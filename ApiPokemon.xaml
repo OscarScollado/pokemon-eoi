@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1117,1221" sap2010:WorkflowViewState.IdRef="ApiPokemon_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1133,1464" sap2010:WorkflowViewState.IdRef="ApiPokemon_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -106,25 +106,32 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="561,1156" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="450,559" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="ditto" Name="pokemon" />
-      <Variable x:TypeArguments="x:String" Name="resp" />
+      <Variable x:TypeArguments="x:String" Default="ditto" Name="nombre_pokemon" />
+      <Variable x:TypeArguments="x:String" Name="res" />
       <Variable x:TypeArguments="njl:JObject" Name="json" />
-      <Variable x:TypeArguments="njl:JArray" Name="jarr" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="habs">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(Of String)" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:String" Name="resultado" />
+      <Variable x:TypeArguments="x:String" Name="db_pokemon_id" />
+      <Variable x:TypeArguments="x:String" Name="db_pokemon_name" />
+      <Variable x:TypeArguments="x:String" Name="db_abilities" />
+      <Variable x:TypeArguments="x:String" Name="db_types" />
+      <Variable x:TypeArguments="x:String" Name="db_base_hp" />
+      <Variable x:TypeArguments="x:String" Name="db_base_att" />
+      <Variable x:TypeArguments="x:String" Name="db_base_def" />
+      <Variable x:TypeArguments="x:String" Name="db_base_spa" />
+      <Variable x:TypeArguments="x:String" Name="db_base_spd" />
+      <Variable x:TypeArguments="x:String" Name="db_base_speed" />
+      <Variable x:TypeArguments="x:String" Name="db_sprite" />
+      <Variable x:TypeArguments="x:String" Name="db_moves" />
+      <Variable x:TypeArguments="x:String" Name="db_height" />
+      <Variable x:TypeArguments="x:String" Name="db_weight" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, pokemon)]" sap:VirtualizedContainerService.HintSize="499,70" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[resp]" TimeoutMS="6000">
+    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, nombre_pokemon)]" sap:VirtualizedContainerService.HintSize="388,70" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[res]" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Attachments>
@@ -141,60 +148,17 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
-    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[json]" JsonString="[resp]" />
-    <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_6" JsonObject="[jarr]" JsonString="[json(&quot;abilities&quot;).ToString]" />
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Bandeja de mensajes" sap:VirtualizedContainerService.HintSize="499,85" sap2010:WorkflowViewState.IdRef="MessageBox_7" Text="[jarr.Count]" />
-    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="499,610" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[jarr]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="njl:JToken">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="njl:JToken" Name="ab" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="465,424" sap2010:WorkflowViewState.IdRef="Sequence_4">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="ability_id" />
-              <Variable x:TypeArguments="x:String" Name="ability_name" />
-              <Variable x:TypeArguments="x:String" Name="ability_hidden" />
-            </Sequence.Variables>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:MultipleAssign DisplayName="Asignación múltiple" sap:VirtualizedContainerService.HintSize="423,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-              <ui:MultipleAssign.AssignOperations>
-                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                    <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="x:String">[ability_id]</OutArgument>
-                    </ui:AssignOperation.To>
-                    <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[Regex.Match(ab("ability")("url").ToString, "(\d+)/$").Groups.Item(1).ToString]</InArgument>
-                    </ui:AssignOperation.Value>
-                  </ui:AssignOperation>
-                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                    <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="x:String">[ability_name]</OutArgument>
-                    </ui:AssignOperation.To>
-                    <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[ab("ability")("name").ToString]</InArgument>
-                    </ui:AssignOperation.Value>
-                  </ui:AssignOperation>
-                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-                    <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="x:String">[ability_hidden]</OutArgument>
-                    </ui:AssignOperation.To>
-                    <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[ab("is_hidden").ToString]</InArgument>
-                    </ui:AssignOperation.Value>
-                  </ui:AssignOperation>
-                </scg:List>
-              </ui:MultipleAssign.AssignOperations>
-            </ui:MultipleAssign>
-            <uasa:AppendItemToList x:TypeArguments="x:String" ItemIndex="{x:Null}" DisplayName="Agregar elemento a la lista" sap:VirtualizedContainerService.HintSize="423,133" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_1" ItemToAppend="[&quot;{&quot; + String.Format(&quot;'id': '{0}', 'name': '{1}', 'hidden': '{2}'&quot;, ability_id, ability_name, ability_hidden) + &quot;}&quot;]" List="[habs]" />
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[json]" JsonString="[res]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetAbilities.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetAbilities.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="json">
+          <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="str_abilities">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_abilities" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Bandeja de mensajes" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[db_abilities]" />
   </Sequence>
 </Activity>
