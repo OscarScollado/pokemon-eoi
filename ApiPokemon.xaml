@@ -107,7 +107,11 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="450,712" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="ditto" Name="nombre_pokemon" />
+      <Variable x:TypeArguments="x:String" Name="nombre_pokemon">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">decidueye</Literal>
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="x:String" Name="res" />
       <Variable x:TypeArguments="njl:JObject" Name="json" />
       <Variable x:TypeArguments="x:String" Name="db_id" />
@@ -148,26 +152,26 @@
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
     <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[json]" JsonString="[res]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetName.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="GetName.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetAbilities.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="GetAbilities.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
           <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
         </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_name">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_name" />
+        <OutArgument x:TypeArguments="x:String" x:Key="out_abilities">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_abilities" />
         </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetId.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="GetId.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetTypes.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="GetTypes.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
           <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
         </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_id">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_id" />
+        <OutArgument x:TypeArguments="x:String" x:Key="out_types">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_types" />
         </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Bandeja de mensajes" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[db_name + db_id]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Bandeja de mensajes" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[db_types +db_abilities]" />
   </Sequence>
 </Activity>
