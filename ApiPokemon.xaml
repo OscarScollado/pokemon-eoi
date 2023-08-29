@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1133,777" sap2010:WorkflowViewState.IdRef="ApiPokemon_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="834.4,1730.4" sap2010:WorkflowViewState.IdRef="ApiPokemon_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -105,36 +105,32 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="450,712" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="449.6,1665.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="nombre_pokemon">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">decidueye</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="decidueye" Name="nombre_pokemon" />
       <Variable x:TypeArguments="x:String" Name="res" />
       <Variable x:TypeArguments="njl:JObject" Name="json" />
-      <Variable x:TypeArguments="x:String" Name="db_id" />
+      <Variable x:TypeArguments="x:Int32" Name="db_id" />
       <Variable x:TypeArguments="x:String" Name="db_name" />
       <Variable x:TypeArguments="x:String" Name="db_abilities" />
       <Variable x:TypeArguments="x:String" Name="db_types" />
-      <Variable x:TypeArguments="x:String" Name="db_base_hp" />
-      <Variable x:TypeArguments="x:String" Name="db_base_att" />
-      <Variable x:TypeArguments="x:String" Name="db_base_def" />
-      <Variable x:TypeArguments="x:String" Name="db_base_spa" />
-      <Variable x:TypeArguments="x:String" Name="db_base_spd" />
-      <Variable x:TypeArguments="x:String" Name="db_base_speed" />
+      <Variable x:TypeArguments="x:Int32" Name="db_base_hp" />
+      <Variable x:TypeArguments="x:Int32" Name="db_base_att" />
+      <Variable x:TypeArguments="x:Int32" Name="db_base_def" />
+      <Variable x:TypeArguments="x:Int32" Name="db_base_spa" />
+      <Variable x:TypeArguments="x:Int32" Name="db_base_spd" />
+      <Variable x:TypeArguments="x:Int32" Name="db_base_speed" />
       <Variable x:TypeArguments="x:String" Name="db_sprite" />
       <Variable x:TypeArguments="x:String" Name="db_moves" />
-      <Variable x:TypeArguments="x:String" Name="db_height" />
-      <Variable x:TypeArguments="x:String" Name="db_weight" />
+      <Variable x:TypeArguments="x:Double" Name="db_height" />
+      <Variable x:TypeArguments="x:Double" Name="db_weight" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, nombre_pokemon)]" sap:VirtualizedContainerService.HintSize="388,70" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[res]" TimeoutMS="6000">
+    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, nombre_pokemon)]" sap:VirtualizedContainerService.HintSize="387.2,71.2" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[res]" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Attachments>
@@ -151,27 +147,128 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
-    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[json]" JsonString="[res]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetWeight.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="GetWeight.xaml">
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[json]" JsonString="[res]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener ID del Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="GetId.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_weight">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_weight" />
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
+          <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_id">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="db_id" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener Nombre del Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="GetName.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">[json]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_name">[db_name]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener Habilidades del Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="GetAbilities.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">[json]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_abilities">[db_abilities]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener Atributos del Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="GetBaseStats.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
+          <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_attack">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="db_base_att" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_defense">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="db_base_def" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_hp">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="db_base_hp" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_special_attack">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="db_base_spa" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_special_defense">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="db_base_spd" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_speed">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="db_base_speed" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener Tipos del Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="GetTypes.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">[json]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_types">[db_types]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener Movimientos del Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="GetMoves.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">[json]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_moves">[db_moves]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener Peso de Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="GetWeight.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:Double" x:Key="out_weight">
+          <VisualBasicReference x:TypeArguments="x:Double" ExpressionText="db_weight" />
         </OutArgument>
         <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
           <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetHeight.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="GetHeight.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Obtener Altura del Pokemon" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="GetHeight.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_height">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_height" />
+        <OutArgument x:TypeArguments="x:Double" x:Key="out_height">
+          <VisualBasicReference x:TypeArguments="x:Double" ExpressionText="db_height" />
         </OutArgument>
         <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
           <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Bandeja de mensajes" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[db_height + &quot;,&quot;  + db_weight]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DatabaseConnection.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="DatabaseConnection.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="db_abilities">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="db_abilities" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="db_id">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="db_id" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="db_name">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="db_name" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_hp">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="db_base_hp" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_att">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="db_base_att" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_def">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="db_base_def" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_spa">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="db_base_spa" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_spd">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="db_base_spd" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_speed">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="db_base_speed" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="db_moves">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="db_moves" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="db_types">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="db_types" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Double" x:Key="db_height">
+          <VisualBasicValue x:TypeArguments="x:Double" ExpressionText="db_height" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Double" x:Key="db_weight">
+          <VisualBasicValue x:TypeArguments="x:Double" ExpressionText="db_weight" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>

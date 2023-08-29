@@ -1,17 +1,17 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="GetBaseStats" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_json" Type="InArgument(njl:JObject)" />
-    <x:Property Name="out_attack" Type="OutArgument(x:String)" />
-    <x:Property Name="out_defense" Type="OutArgument(x:String)" />
-    <x:Property Name="out_hp" Type="OutArgument(x:String)" />
-    <x:Property Name="out_special_attack" Type="OutArgument(x:String)" />
-    <x:Property Name="out_special_defense" Type="OutArgument(x:String)" />
-    <x:Property Name="out_speed" Type="OutArgument(x:String)" />
+    <x:Property Name="out_attack" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_defense" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_hp" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_special_attack" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_special_defense" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_speed" Type="OutArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1133,1132</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>834.4,1138.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetBaseStats_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,7 +101,7 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetBaseStats" sap:VirtualizedContainerService.HintSize="561,1067" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetBaseStats" sap:VirtualizedContainerService.HintSize="562.4,1073.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JArray" Name="JArr_stats" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="stat_dict" />
@@ -111,8 +111,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JArr_stats]" JsonString="[in_json(&quot;stats&quot;).ToString]" />
-    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,83" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="500,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JArr_stats]" JsonString="[in_json(&quot;stats&quot;).ToString]" />
+    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="500,83.2" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[stat_dict]</OutArgument>
       </Assign.To>
@@ -127,13 +127,13 @@
  }]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="499,437" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[JArr_stats]">
+    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="500,441.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[JArr_stats]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="njl:JToken">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="njl:JToken" Name="stat" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="465,251" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="466.4,253.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="stat_name" />
               <Variable x:TypeArguments="x:String" Name="stat_value" />
@@ -143,7 +143,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MultipleAssign DisplayName="Asignación múltiple" sap:VirtualizedContainerService.HintSize="423,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign DisplayName="Asignación múltiple" sap:VirtualizedContainerService.HintSize="423.2,164" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
               <ui:MultipleAssign.AssignOperations>
                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -177,55 +177,55 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:MultipleAssign DisplayName="Asignación múltiple" sap:VirtualizedContainerService.HintSize="499,256" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+    <ui:MultipleAssign DisplayName="Asignación múltiple" sap:VirtualizedContainerService.HintSize="500,256.8" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[out_attack]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32">[out_attack]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[stat_dict("attack")]</InArgument>
+              <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("attack"))]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[out_defense]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32">[out_defense]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[stat_dict("defense")]</InArgument>
+              <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("defense"))]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[out_hp]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32">[out_hp]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[stat_dict("hp")]</InArgument>
+              <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("hp"))]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[out_special_attack]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32">[out_special_attack]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[stat_dict("special-attack")]</InArgument>
+              <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("special-attack"))]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[out_special_defense]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32">[out_special_defense]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[stat_dict("special-defense")]</InArgument>
+              <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("special-defense"))]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="x:String">[out_speed]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32">[out_speed]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[stat_dict("speed")]</InArgument>
+              <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("speed"))]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
         </scg:List>
