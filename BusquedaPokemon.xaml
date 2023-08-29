@@ -221,7 +221,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ui:TypeInto>
             <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Atajos del teclado Enter" sap:VirtualizedContainerService.HintSize="530,179" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" ScopeIdentifier="a83dcbca-35b9-4bdb-886a-654e59a1459d" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V3" />
-            <ui:UiElementExists Exists="{x:Null}" DisplayName="Elemento existente nombre pokemon incorrecto" sap:VirtualizedContainerService.HintSize="530,107" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+            <ui:UiElementExists DisplayName="Elemento existente nombre pokemon incorrecto" Exists="[boolPokemonVacio]" sap:VirtualizedContainerService.HintSize="530,107" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="67d57fe7-1b76-4bf8-a60c-dd6056e49b6a" InformativeScreenshot="415008741f3f2d64a2d43c1cfc122d85" Selector="&lt;html app='chrome.exe' title='Resultados de la búsqueda de * - WikiDex, la enciclopedia Pokémon' /&gt;&lt;webctrl omit:id='content' tag='DIV' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -321,7 +321,7 @@
                         <OutArgument x:TypeArguments="x:String">[in_pathImagenes]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[pathImagenes.Replace("[NombrePokemon]",in_NombrePokemon)]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[in_pathImagenes.Replace("[NombrePokemon]",in_NombrePokemon)]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <ui:SaveImage DisplayName="Guardar imagen con nombre del pokemon" FileName="[in_pathImagenes]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[imagenPokemon]" />
