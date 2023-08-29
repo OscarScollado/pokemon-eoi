@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1133,677" sap2010:WorkflowViewState.IdRef="ApiPokemon_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1133,777" sap2010:WorkflowViewState.IdRef="ApiPokemon_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -105,7 +105,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="450,559" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="450,712" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="nombre_pokemon">
         <Variable.Default>
@@ -152,31 +152,26 @@
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
     <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[json]" JsonString="[res]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetBaseStats.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="GetBaseStats.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetWeight.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="GetWeight.xaml">
       <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_weight">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_weight" />
+        </OutArgument>
         <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
           <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
         </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_attack">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_base_att" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_defense">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_base_def" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_hp">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_base_hp" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_special_attack">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_base_spa" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_special_defense">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_base_spd" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_speed">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_base_speed" />
-        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Bandeja de mensajes" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[db_base_att + &quot;, &quot; + db_base_def + &quot;, &quot; + db_base_hp + &quot;, &quot; + db_base_spa + &quot;, &quot; + db_base_spd + &quot;, &quot; + db_base_speed]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetHeight.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="GetHeight.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_height">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="db_height" />
+        </OutArgument>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_json">
+          <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="json" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Bandeja de mensajes" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[db_height + &quot;,&quot;  + db_weight]" />
   </Sequence>
 </Activity>
