@@ -1,7 +1,7 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Secuencia" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="json" Type="InArgument(njl:JObject)" />
-    <x:Property Name="str_abilities" Type="OutArgument(x:String)" />
+    <x:Property Name="in_json" Type="InArgument(njl:JObject)" />
+    <x:Property Name="out_abilities" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -97,10 +97,10 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JArr_abilities]" JsonString="[json(&quot;abilities&quot;).ToString]" />
+    <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JArr_abilities]" JsonString="[in_json(&quot;abilities&quot;).ToString]" />
     <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[str_abilities]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_abilities]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:String">[</InArgument>
@@ -167,10 +167,10 @@
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
                     <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="x:String">[str_abilities]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String">[out_abilities]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String">[str_abilities + str_ability + ","]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[out_abilities + str_ability + ","]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
                 </scg:List>
@@ -182,10 +182,10 @@
     </ui:ForEach>
     <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[str_abilities]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_abilities]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[str_abilities + "]"]</InArgument>
+        <InArgument x:TypeArguments="x:String">[out_abilities + "]"]</InArgument>
       </Assign.Value>
     </Assign>
   </Sequence>
