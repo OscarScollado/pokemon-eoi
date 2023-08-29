@@ -321,7 +321,7 @@
                         <OutArgument x:TypeArguments="x:String">[in_pathImagenes]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[pathImagenes.Replace("[PokemonName]",PokemonName)]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[pathImagenes.Replace("[NombrePokemon]",in_NombrePokemon)]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <ui:SaveImage DisplayName="Guardar imagen con nombre del pokemon" FileName="[in_pathImagenes]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[imagenPokemon]" />

@@ -76,7 +76,7 @@
           <Literal x:TypeArguments="x:String">pikachu</Literal>
         </InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_pathImagenes">
-          <Literal x:TypeArguments="x:String">resources\imagenes</Literal>
+          <Literal x:TypeArguments="x:String">resources\imagenes\[NombrePokemon].png</Literal>
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
