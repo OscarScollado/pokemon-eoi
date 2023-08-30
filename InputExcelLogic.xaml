@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="834.4,617.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="834.4,2560" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -96,27 +96,15 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="680,2495.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Int32" Name="numeroFilas">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" Value="2" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Int32" Default="2" Name="numeroFilas" />
       <Variable x:TypeArguments="x:String" Name="valorFila">
         <Variable.Default>
           <Literal x:TypeArguments="x:String" Value="" />
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="scg:List(x:String)" Name="pokemonToRead">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(Of String)" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(Of String)]" Name="pokemonToRead" />
       <Variable x:TypeArguments="sd:DataTable" Name="DataToExtract" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="dataToSelect">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(Of String)" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(Of String)]" Name="dataToSelect" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -138,7 +126,7 @@
             <OutArgument x:TypeArguments="x:String">[valorFila]</OutArgument>
           </ui:ReadCell.Result>
         </ui:ReadCell>
-        <If Condition="[not valorFila is Nothing]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="510.4,585.6" sap2010:WorkflowViewState.IdRef="If_1">
+        <If Condition="[valorFila &lt;&gt; Nothing]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="510.4,585.6" sap2010:WorkflowViewState.IdRef="If_1">
           <If.Then>
             <Sequence sap:VirtualizedContainerService.HintSize="377.6,231.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <sap:WorkflowViewStateService.ViewState>
@@ -209,10 +197,7 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <DoWhile DisplayName="Hacer mientras" sap:VirtualizedContainerService.HintSize="617.6,1060.8" sap2010:WorkflowViewState.IdRef="DoWhile_3">
-      <DoWhile.Condition>
-        <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="not valorFila.Equals(&quot;&quot;) or valorFila &lt;&gt; Nothing or valorFila &lt;&gt; String.Empty" />
-      </DoWhile.Condition>
+    <DoWhile DisplayName="Hacer mientras" sap:VirtualizedContainerService.HintSize="617.6,1060.8" sap2010:WorkflowViewState.IdRef="DoWhile_3" Condition="[not valorFila.Equals(&quot;&quot;) or valorFila &lt;&gt; Nothing or valorFila &lt;&gt; String.Empty]">
       <Sequence DisplayName="Secuencia" sap:VirtualizedContainerService.HintSize="496,897.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
