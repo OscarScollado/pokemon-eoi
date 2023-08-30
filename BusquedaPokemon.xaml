@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1117,5252</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1133,5254</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ChatGPT_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -118,15 +118,11 @@
       <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,5187" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,5189" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="urlWikidex" />
-      <Variable x:TypeArguments="x:String" Name="PokemonName" />
-      <Variable x:TypeArguments="x:String" Name="pathImagenes" />
       <Variable x:TypeArguments="ui:Image" Name="imagenPokemon" />
-      <Variable x:TypeArguments="x:String" Name="urlimage" />
       <Variable x:TypeArguments="x:Boolean" Name="boolWikidex" />
-      <Variable x:TypeArguments="x:String" Name="prueba" />
+      <Variable x:TypeArguments="x:String" Name="urlWikidex" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -149,13 +145,13 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,4542" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,4544" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="592,4325" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="592,4327" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="boolPokemonVacio" />
             </Sequence.Variables>
@@ -180,10 +176,10 @@
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
             <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;3&quot;]" />
-            <ui:IfElseIf DisplayName="Else If no accede a la wikidex" sap:VirtualizedContainerService.HintSize="530,579" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+            <ui:IfElseIf DisplayName="Else If no accede a la wikidex" sap:VirtualizedContainerService.HintSize="530,580" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
               <ui:IfElseIf.ConditionBlocks>
                 <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                  <ui:IfElseIfBlock BlockType="If" Condition="[not boolWikidex]">
+                  <ui:IfElseIfBlock BlockType="If" Condition="[boolWikidex]">
                     <ui:IfElseIfBlock.Then>
                       <Sequence DisplayName="Excepcion" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_3">
                         <sap:WorkflowViewStateService.ViewState>
@@ -239,7 +235,7 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <ui:IfElseIf DisplayName="Else If existe el nombre incorrecto" sap:VirtualizedContainerService.HintSize="530,579" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+            <ui:IfElseIf DisplayName="Else If existe el nombre incorrecto" sap:VirtualizedContainerService.HintSize="530,580" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
               <ui:IfElseIf.ConditionBlocks>
                 <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                   <ui:IfElseIfBlock BlockType="If" Condition="[boolPokemonVacio]">
