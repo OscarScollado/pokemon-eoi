@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="BusquedaPokemon" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="BusquedaPokemon" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_NombrePokemon" Type="InArgument(x:String)" />
     <x:Property Name="in_pathImagenes" Type="InArgument(x:String)" />
@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1133,5254</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1117,4239</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ChatGPT_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -54,6 +54,7 @@
       <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -116,12 +117,13 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
       <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,5189" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,4174" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="imagenPokemon" />
-      <Variable x:TypeArguments="x:Boolean" Name="boolWikidex" />
       <Variable x:TypeArguments="x:String" Name="urlWikidex" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -145,24 +147,22 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,4544" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,3529" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="592,4327" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="592,3312" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="boolPokemonVacio" />
+              <Variable x:TypeArguments="x:Boolean" Name="boolWikidex" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;1&quot;]" />
-            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximizar ventana" sap:VirtualizedContainerService.HintSize="530,25" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
-            <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;2&quot;]" />
             <ui:UiElementExists DisplayName="Elemento existente wikidex" Exists="[boolWikidex]" sap:VirtualizedContainerService.HintSize="530,107" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7610db33-cb9e-40d5-8010-ee1252e95b1b" InformativeScreenshot="312b262def4cafa3f4d28f2d649f261f" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' innertext='Bienvenido a WikiDex' /&gt;">
@@ -175,33 +175,29 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;3&quot;]" />
-            <ui:IfElseIf DisplayName="Else If no accede a la wikidex" sap:VirtualizedContainerService.HintSize="530,580" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
-              <ui:IfElseIf.ConditionBlocks>
-                <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                  <ui:IfElseIfBlock BlockType="If" Condition="[boolWikidex]">
-                    <ui:IfElseIfBlock.Then>
-                      <Sequence DisplayName="Excepcion" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Registrar mensaje excepcion" sap:VirtualizedContainerService.HintSize="388,143" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;No se ha encontrado la página de la wikidex&quot;]" />
-                        <Throw DisplayName="Lanzar excepción" Exception="[new SystemException(&quot;No se ha podido encontrar la página de la wikidex&quot;)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
-                      </Sequence>
-                    </ui:IfElseIfBlock.Then>
-                  </ui:IfElseIfBlock>
-                </sc:BindingList>
-              </ui:IfElseIf.ConditionBlocks>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:IfElseIf>
-            <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;4&quot;]" />
+            <If Condition="[not boolWikidex]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="492,472" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Excepcion" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Registrar mensaje excepcion" sap:VirtualizedContainerService.HintSize="388,143" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;No se ha encontrado la página de la wikidex&quot;]" />
+                    <Throw DisplayName="Lanzar excepción" Exception="[new SystemException(&quot;No se ha podido encontrar la página de la wikidex&quot;)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                  </Sequence>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8" />
+              </If.Else>
+            </If>
             <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Escribir en buscar pokemon" sap:VirtualizedContainerService.HintSize="530,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_NombrePokemon]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c86a3d46-0ce9-46f3-9e9f-b7ccd1115bc0" InformativeScreenshot="ef1562b28cb14822968645e3fae1ad52" Selector="&lt;webctrl id='searchInput' tag='INPUT' /&gt;">
@@ -220,9 +216,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:TypeInto>
-            <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;5&quot;]" />
             <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Atajos del teclado Enter" sap:VirtualizedContainerService.HintSize="530,179" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" ScopeIdentifier="a83dcbca-35b9-4bdb-886a-654e59a1459d" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V3" />
-            <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="530,143" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;6&quot;]" />
             <ui:UiElementExists DisplayName="Elemento existente nombre pokemon incorrecto" Exists="[boolPokemonVacio]" sap:VirtualizedContainerService.HintSize="530,107" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="67d57fe7-1b76-4bf8-a60c-dd6056e49b6a" InformativeScreenshot="415008741f3f2d64a2d43c1cfc122d85" Selector="&lt;html app='chrome.exe' title='Resultados de la búsqueda de * - WikiDex, la enciclopedia Pokémon' /&gt;&lt;webctrl omit:id='content' tag='DIV' /&gt;">
@@ -235,31 +229,29 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <ui:IfElseIf DisplayName="Else If existe el nombre incorrecto" sap:VirtualizedContainerService.HintSize="530,580" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
-              <ui:IfElseIf.ConditionBlocks>
-                <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                  <ui:IfElseIfBlock BlockType="If" Condition="[boolPokemonVacio]">
-                    <ui:IfElseIfBlock.Then>
-                      <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Registrar mensaje nombre incorrecto" sap:VirtualizedContainerService.HintSize="388,143" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;No se ha escrito bien el nombre del pokemon&quot;]" />
-                        <Throw DisplayName="Lanzar excepción nombre incorrecto" Exception="[new ArgumentException(&quot;El nombre que se ha introducio es incorrecto&quot;)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_2" />
-                      </Sequence>
-                    </ui:IfElseIfBlock.Then>
-                  </ui:IfElseIfBlock>
-                </sc:BindingList>
-              </ui:IfElseIf.ConditionBlocks>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:IfElseIf>
+            <If Condition="[boolPokemonVacio or in_NombrePokemon is Nothing]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="492,472" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Registrar mensaje nombre incorrecto" sap:VirtualizedContainerService.HintSize="388,143" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;No se ha escrito bien el nombre del pokemon&quot;]" />
+                    <Throw DisplayName="Lanzar excepción nombre incorrecto" Exception="[new ArgumentException(&quot;El nombre que se ha introducido es incorrecto&quot;)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                  </Sequence>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10" />
+              </If.Else>
+            </If>
             <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Asociar navegador wikidex" sap:VirtualizedContainerService.HintSize="530,954" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="3701f83c482afa07221fb6c6ad4e78aa" Selector="&lt;html app='chrome.exe' title='* - WikiDex, la enciclopedia Pokémon' /&gt;">
               <ui:BrowserScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
@@ -296,7 +288,7 @@
                         </ui:CursorPosition>
                       </ui:Click.CursorPosition>
                       <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4271dc38-d749-4316-8d37-c3326e9e7e4a" InformativeScreenshot="989c2ccd41f144965c70c6d2b292bac5" Selector="&lt;webctrl tag='IMG' /&gt;">
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4271dc38-d749-4316-8d37-c3326e9e7e4a" InformativeScreenshot="989c2ccd41f144965c70c6d2b292bac5" Selector="&lt;webctrl aaname='Ilustración de *' tag='IMG' /&gt;">
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>
@@ -308,7 +300,7 @@
                     </ui:Click>
                     <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Realizar captura de pantalla del pokemon" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[imagenPokemon]">
                       <ui:TakeScreenshot.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d4f52a35-6349-418c-bd50-7671f1115e6c" InformativeScreenshot="5b92d943af978bc4113dc2eec40ae996" Selector="&lt;webctrl tag='IMG' /&gt;">
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d4f52a35-6349-418c-bd50-7671f1115e6c" InformativeScreenshot="5b92d943af978bc4113dc2eec40ae996" Selector="&lt;webctrl id='TB_Image' tag='IMG' /&gt;">
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>
