@@ -132,7 +132,7 @@
       <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="512,1402" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="512,1249" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="decidueye" Name="nombre_pokemon" />
       <Variable x:TypeArguments="x:String" Name="res" />
@@ -655,22 +655,5 @@
       <ui:DatabaseConnect DisplayName="Conectar a base de datos" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionSecureString="[secureString]" DatabaseConnection="[db_connection]" />
       <ui:InsertDataTable AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" DataTable="[dataToInsert]" DisplayName="Insertar" ExistingDbConnection="[db_connection]" sap:VirtualizedContainerService.HintSize="434,116" sap2010:WorkflowViewState.IdRef="InsertDataTable_1" TableName="Pokemon" />
     </Sequence>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DatabaseConnection.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="DatabaseConnection.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="db_abilities">[db_abilities1]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="db_id">[db_id1]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="db_name">[db_name1]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_hp">[db_base_hp1]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_att">[db_base_att1]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_def">[db_base_def1]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_spa">[db_base_spa1]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_spd">[db_base_spd1]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="db_base_speed">[db_base_speed1]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="db_moves">[db_moves1]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="db_types">[db_types1]</InArgument>
-        <InArgument x:TypeArguments="x:Double" x:Key="db_height">[db_height1]</InArgument>
-        <InArgument x:TypeArguments="x:Double" x:Key="db_weight">[db_weight1]</InArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>
