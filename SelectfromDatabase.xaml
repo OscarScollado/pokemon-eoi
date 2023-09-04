@@ -1,7 +1,7 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="SelectfromDatabase" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="pokemon" Type="InArgument(x:String)" />
-    <x:Property Name="dataToSelect" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="in_dataToSelect" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="in_pokemon" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -103,11 +103,7 @@
       <Variable x:TypeArguments="x:String" Name="selectQuery" />
       <Variable x:TypeArguments="ui:DatabaseConnection" Name="dbConnection" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt" />
-      <Variable x:TypeArguments="s:String[]" Name="toselect">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{&quot;pokemon_id&quot;, &quot;base_hp&quot;}" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="s:String[]" Default="[{&quot;pokemon_id&quot;, &quot;base_hp&quot;}]" Name="toselect" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -120,7 +116,7 @@
         <OutArgument x:TypeArguments="x:String">[selectQuery]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[String.Join(",",toselect)]</InArgument>
+        <InArgument x:TypeArguments="x:String">[String.Join(",", in_dataToSelect)]</InArgument>
       </Assign.Value>
     </Assign>
     <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt]" DisplayName="Ejecutar consulta" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select &quot; + selectQuery + &quot; from Pokemons&quot;]">
