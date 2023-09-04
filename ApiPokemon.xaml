@@ -1,25 +1,11 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_json" Type="InArgument(njl:JObject)" />
-    <x:Property Name="out_id" Type="OutArgument(x:Int32)" />
-    <x:Property Name="out_name" Type="OutArgument(x:String)" />
-    <x:Property Name="out_abilities" Type="OutArgument(x:String)" />
-    <x:Property Name="out_attack" Type="OutArgument(x:Int32)" />
-    <x:Property Name="out_defense" Type="OutArgument(x:Int32)" />
-    <x:Property Name="out_hp" Type="OutArgument(x:Int32)" />
-    <x:Property Name="out_special_attack" Type="OutArgument(x:Int32)" />
-    <x:Property Name="out_special_defense" Type="OutArgument(x:Int32)" />
-    <x:Property Name="out_speed" Type="OutArgument(x:Int32)" />
-    <x:Property Name="out_types" Type="OutArgument(x:String)" />
-    <x:Property Name="out_moves" Type="OutArgument(x:String)" />
-    <x:Property Name="out_weight" Type="OutArgument(x:Double)" />
-    <x:Property Name="out_height" Type="OutArgument(x:Double)" />
     <x:Property Name="in_connectionString" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,3063</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1133,6007</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ApiPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -69,70 +55,71 @@
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
       <AssemblyReference>System.Data</AssemblyReference>
       <AssemblyReference>System.Data.Common</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
       <AssemblyReference>System.Drawing</AssemblyReference>
       <AssemblyReference>System.Drawing.Common</AssemblyReference>
       <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
       <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
       <AssemblyReference>System.ObjectModel</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>UiPath.Platform</AssemblyReference>
-      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
-      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
-      <AssemblyReference>System.Security.Permissions</AssemblyReference>
-      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
-      <AssemblyReference>UiPath.Web</AssemblyReference>
-      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
-      <AssemblyReference>netstandard</AssemblyReference>
-      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
-      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
-      <AssemblyReference>PresentationFramework</AssemblyReference>
-      <AssemblyReference>WindowsBase</AssemblyReference>
-      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
-      <AssemblyReference>System.ComponentModel</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
-      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
-      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
-      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
-      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
-      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
-      <AssemblyReference>UiPath.Workflow</AssemblyReference>
-      <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Memory.Data</AssemblyReference>
-      <AssemblyReference>System.Console</AssemblyReference>
-      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
-      <AssemblyReference>System.Memory</AssemblyReference>
-      <AssemblyReference>System.Private.Uri</AssemblyReference>
-      <AssemblyReference>System.Private.Xml</AssemblyReference>
-      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
-      <AssemblyReference>System.Collections</AssemblyReference>
-      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
-      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
-      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
-      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>UiPath.Database</AssemblyReference>
       <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="512,1249" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="623,5942" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="decidueye" Name="nombre_pokemon" />
       <Variable x:TypeArguments="x:String" Name="res" />
@@ -151,15 +138,13 @@
       <Variable x:TypeArguments="x:String" Name="db_moves" />
       <Variable x:TypeArguments="x:Double" Name="db_height" />
       <Variable x:TypeArguments="x:Double" Name="db_weight" />
-      <Variable x:TypeArguments="x:Int32" Name="in_weight" />
-      <Variable x:TypeArguments="x:Int32" Name="in_height" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, nombre_pokemon)]" sap:VirtualizedContainerService.HintSize="450,70" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="GET" Result="[res]" TimeoutMS="6000">
+    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, nombre_pokemon)]" sap:VirtualizedContainerService.HintSize="561,70" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="GET" Result="[res]" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Attachments>
@@ -176,45 +161,45 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
-    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="450,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[json]" JsonString="[res]" />
-    <Sequence DisplayName="Get Id and Name" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="561,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[json]" JsonString="[res]" />
+    <Sequence DisplayName="Get Id and Name" sap:VirtualizedContainerService.HintSize="561,315" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Assign DisplayName="GetId" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:Int32">[out_id]</OutArgument>
+          <OutArgument x:TypeArguments="x:Int32">[db_id]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[CInt(in_json("id").ToString)]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[CInt(json("id").ToString)]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="GetName" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[out_name]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[db_name]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[in_json("name").ToString]</InArgument>
+          <InArgument x:TypeArguments="x:String">[json("name").ToString]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="GetAbilities" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="GetAbilities" sap:VirtualizedContainerService.HintSize="561,954" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="njl:JArray" Name="JArr_abilities" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[JArr_abilities]" JsonString="[in_json(&quot;abilities&quot;).ToString]" />
+      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[JArr_abilities]" JsonString="[json(&quot;abilities&quot;).ToString]" />
       <Assign DisplayName="Asignar " sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[out_abilities]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[db_abilities]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[</InArgument>
@@ -275,10 +260,10 @@
                     </ui:AssignOperation>
                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
                       <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:String">[out_abilities]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[db_abilities]</OutArgument>
                       </ui:AssignOperation.To>
                       <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:String">[out_abilities + str_ability + ","]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[db_abilities + str_ability + ","]</InArgument>
                       </ui:AssignOperation.Value>
                     </ui:AssignOperation>
                   </scg:List>
@@ -290,25 +275,25 @@
       </ui:ForEach>
       <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_4">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[out_abilities]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[db_abilities]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[out_abilities + "]"]</InArgument>
+          <InArgument x:TypeArguments="x:String">[db_abilities + "]"]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="GetBaseStats" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="GetBaseStats" sap:VirtualizedContainerService.HintSize="561,1067" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="njl:JArray" Name="JArr_stats" />
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="stat_dict" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_6" JsonObject="[JArr_stats]" JsonString="[in_json(&quot;stats&quot;).ToString]" />
+      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_6" JsonObject="[JArr_stats]" JsonString="[json(&quot;stats&quot;).ToString]" />
       <Assign DisplayName="Asignar diccionario" sap:VirtualizedContainerService.HintSize="499,83" sap2010:WorkflowViewState.IdRef="Assign_5">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[stat_dict]</OutArgument>
@@ -379,7 +364,7 @@
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
               <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:Int32">[out_attack]</OutArgument>
+                <OutArgument x:TypeArguments="x:Int32">[db_base_att]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
                 <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("attack"))]</InArgument>
@@ -387,7 +372,7 @@
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
               <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:Int32">[out_defense]</OutArgument>
+                <OutArgument x:TypeArguments="x:Int32">[db_base_def]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
                 <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("defense"))]</InArgument>
@@ -395,7 +380,7 @@
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
               <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:Int32">[out_hp]</OutArgument>
+                <OutArgument x:TypeArguments="x:Int32">[db_base_hp]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
                 <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("hp"))]</InArgument>
@@ -403,7 +388,7 @@
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
               <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:Int32">[out_special_attack]</OutArgument>
+                <OutArgument x:TypeArguments="x:Int32">[db_base_spa]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
                 <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("special-attack"))]</InArgument>
@@ -411,7 +396,7 @@
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
               <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:Int32">[out_special_defense]</OutArgument>
+                <OutArgument x:TypeArguments="x:Int32">[db_base_spd]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
                 <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("special-defense"))]</InArgument>
@@ -419,7 +404,7 @@
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
               <ui:AssignOperation.To>
-                <OutArgument x:TypeArguments="x:Int32">[out_speed]</OutArgument>
+                <OutArgument x:TypeArguments="x:Int32">[db_base_speed]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
                 <InArgument x:TypeArguments="x:Int32">[CInt(stat_dict("speed"))]</InArgument>
@@ -429,20 +414,20 @@
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
     </Sequence>
-    <Sequence DisplayName="GetTypes" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="GetTypes" sap:VirtualizedContainerService.HintSize="561,861" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <Sequence.Variables>
         <Variable x:TypeArguments="njl:JArray" Name="JArr_types" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_7" JsonObject="[JArr_types]" JsonString="[in_json(&quot;types&quot;).ToString]" />
+      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_7" JsonObject="[JArr_types]" JsonString="[json(&quot;types&quot;).ToString]" />
       <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_6">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[out_types]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[db_types]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[</InArgument>
@@ -476,10 +461,10 @@
                     </ui:AssignOperation>
                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
                       <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:String">[out_types]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[db_types]</OutArgument>
                       </ui:AssignOperation.To>
                       <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:String">[out_types + type_name + ","]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[db_types + type_name + ","]</InArgument>
                       </ui:AssignOperation.Value>
                     </ui:AssignOperation>
                   </scg:List>
@@ -491,27 +476,27 @@
       </ui:ForEach>
       <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_7">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[out_types]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[db_types]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[out_types + "]"]</InArgument>
+          <InArgument x:TypeArguments="x:String">[db_types + "]"]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="GetMoves" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <Sequence DisplayName="GetMoves" sap:VirtualizedContainerService.HintSize="561,861" sap2010:WorkflowViewState.IdRef="Sequence_9">
       <Sequence.Variables>
         <Variable x:TypeArguments="njl:JArray" Name="JArr_moves" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_8" JsonObject="[JArr_moves]" JsonString="[in_json(&quot;moves&quot;).ToString]" />
+      <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_8" JsonObject="[JArr_moves]" JsonString="[json(&quot;moves&quot;).ToString]" />
       <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_8">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[out_moves]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[db_moves]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[</InArgument>
@@ -545,10 +530,10 @@
                     </ui:AssignOperation>
                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
                       <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:String">[out_moves]</OutArgument>
+                        <OutArgument x:TypeArguments="x:String">[db_moves]</OutArgument>
                       </ui:AssignOperation.To>
                       <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:String">[out_moves + move_name + ","]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[db_moves + move_name + ","]</InArgument>
                       </ui:AssignOperation.Value>
                     </ui:AssignOperation>
                   </scg:List>
@@ -560,68 +545,52 @@
       </ui:ForEach>
       <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_9">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[out_moves]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[db_moves]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[out_moves + "]"]</InArgument>
+          <InArgument x:TypeArguments="x:String">[db_moves + "]"]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="GetWeight" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_15">
+    <Sequence DisplayName="GetWeight" sap:VirtualizedContainerService.HintSize="561,193" sap2010:WorkflowViewState.IdRef="Sequence_15">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="in_weight" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Assign DisplayName="Asignar int" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_16">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:Int32">[in_weight]</OutArgument>
+          <OutArgument x:TypeArguments="x:Double">[db_weight]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[Cint(in_json("weight").toString)]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign DisplayName="Asignar double" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_17">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:Double">[out_weight]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(in_weight/10)]</InArgument>
+          <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(json("weight").toString)/10]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="GetHeight" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_16">
+    <Sequence DisplayName="GetHeight" sap:VirtualizedContainerService.HintSize="561,193" sap2010:WorkflowViewState.IdRef="Sequence_16">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="in_height" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Assign DisplayName="Asignar int" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_18">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:Int32">[in_height]</OutArgument>
+          <OutArgument x:TypeArguments="x:Double">[db_height]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[CInt(in_json("height").ToString)]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign DisplayName="Asignar double" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_19">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:Double">[out_height]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(in_height/10)]</InArgument>
+          <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(json("height").ToString)/10]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="DatabaseConnection" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_11">
+    <Sequence DisplayName="DatabaseConnection" sap:VirtualizedContainerService.HintSize="561,897" sap2010:WorkflowViewState.IdRef="Sequence_18">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" Name="secureString" />
         <Variable x:TypeArguments="ui:DatabaseConnection" Name="db_connection" />
@@ -630,7 +599,7 @@
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
