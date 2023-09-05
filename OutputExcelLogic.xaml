@@ -112,17 +112,11 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SelectfromDatabase.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SelectfromDatabase.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_dataToSelect">
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List (Of String) From {&quot;pokemon_id&quot;, &quot;base_hp&quot;, &quot;moves&quot;}" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_pokemon">
-          <Literal x:TypeArguments="x:String">AAAAAAAAAAAAAAAAAAAA</Literal>
-        </InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt">
-          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt" />
-        </OutArgument>
+        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_dataToSelect">[new List (Of String) From {"pokemon_id", "base_hp", "moves"}]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_pokemon">AAAAAAAAAAAAAAAAAAAA</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt">[dt]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dt]" DisplayName="Escribir libro de intervalo" sap:VirtualizedContainerService.HintSize="388,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="nombreprueba" WorkbookPath="[&quot;.\pokemons_&quot; + DateTime.Now.ToString(&quot;yyyyMMdd_HHmmss&quot;) + &quot;.xlsx&quot;]" />
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dt]" DisplayName="Escribir libro de intervalo" sap:VirtualizedContainerService.HintSize="388,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="nombrepokemon" WorkbookPath="[&quot;.\pokemons_&quot; + DateTime.Now.ToString(&quot;yyyyMMdd_HHmmss&quot;) + &quot;.xlsx&quot;]" />
   </Sequence>
 </Activity>
