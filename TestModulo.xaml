@@ -82,6 +82,7 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_connectionString">
           <Literal x:TypeArguments="x:String">Data Source=DESKTOP-SR2QIG0\SQLEXPRESS;Initial Catalog=Pokemon;User ID=sa;Password=1234;Encrypt=False</Literal>
         </InArgument>
+        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="out_db_connection" />
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>
