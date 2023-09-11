@@ -1,0 +1,25 @@
+﻿{
+	"pathSaveExcel" :				"C:\\Users\\jonimm98\\Desktop\\ExcelProyecto",
+	"OrchestratorQueueName":	"RobotPokemon",
+	"OrchestratorFolder":				"Shared",
+	
+	
+	
+	"TimeoutSmall" : 				"1000",
+	"TimeoutMedium" : 		"3000",
+	"TimeoutLarge" : 				"5000"
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
