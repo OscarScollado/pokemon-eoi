@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1133,678</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,827</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SelectfromDatabase_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -110,8 +110,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:DatabaseConnect DisplayName="Conectar a base de datos" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="Data Source=xxx\SQLEXPRESS;Initial Catalog=Pokemon;Integrated Security=True;Encrypt=False" DatabaseConnection="[dbConnection]" />
-    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <ui:DatabaseConnect DisplayName="Conectar a base de datos Pokemon" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="Data Source=xxx\SQLEXPRESS;Initial Catalog=Pokemon;Integrated Security=True;Encrypt=False" DatabaseConnection="[dbConnection]" />
+    <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[selectQuery]</OutArgument>
       </Assign.To>
@@ -119,7 +119,7 @@
         <InArgument x:TypeArguments="x:String">[String.Join(",", in_dataToSelect)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt]" DisplayName="Ejecutar consulta" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select &quot; + selectQuery + &quot; from Pokemons&quot;]">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt]" DisplayName="Ejecutar consulta Select" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select &quot; + selectQuery + &quot; from Pokemons&quot;]">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>

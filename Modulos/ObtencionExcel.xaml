@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,897</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,954</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GmailPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -133,7 +133,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="496,832" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="496,889" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="listaOutlook" />
       <Variable x:TypeArguments="x:Int32" Name="puerto" />
@@ -176,8 +176,14 @@
         <InArgument x:TypeArguments="x:String">[New System.Net.NetworkCredential("",in_password).Password]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" DeleteMessages="False" DisplayName="Obtener mensajes de correo IMAP" Email="[in_cuentaCorreo]" EnableSSL="True" FilterExpressionCharacterSet="US-ASCII" sap:VirtualizedContainerService.HintSize="434,25" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_5" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[listaOutlook]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Password="[SecuredPass]" Port="[puerto]" SecureConnection="Auto" Server="[serverOutlook]" Top="30" />
-    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="434,362" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[listaOutlook]">
+    <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="Obtener los mensajes de la cuenta de outlook que pongamos, un máximo de 30." DeleteMessages="False" DisplayName="Obtener mensajes de correo IMAP" Email="[in_cuentaCorreo]" EnableSSL="True" FilterExpressionCharacterSet="US-ASCII" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_5" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[listaOutlook]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Password="[SecuredPass]" Port="[puerto]" SecureConnection="Auto" Server="[serverOutlook]" Top="30">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetIMAPMailMessages>
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="Para cada correo" sap:VirtualizedContainerService.HintSize="434,362" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[listaOutlook]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="snm:MailMessage">
           <ActivityAction.Argument>

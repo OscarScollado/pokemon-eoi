@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1117,4239</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,4239</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ChatGPT_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -126,7 +126,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="626,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Iniciamos el módulo de pokemon&quot;]" />
+    <ui:LogMessage DisplayName="Registrar mensaje start" sap:VirtualizedContainerService.HintSize="626,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Iniciamos el módulo de la búsqueda pokemon en la wikidex&quot;]" />
     <ui:MultipleAssign DisplayName="Inicialización de variables" sap:VirtualizedContainerService.HintSize="626,101" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
@@ -169,7 +169,7 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[not boolWikidex]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[not boolWikidex]" DisplayName="Si la página wikidex no existe" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="492,472" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
@@ -223,7 +223,7 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[boolPokemonVacio or in_NombrePokemon is Nothing]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_2">
+            <If Condition="[boolPokemonVacio or in_NombrePokemon is Nothing]" DisplayName="Si el nombre del pokemon introducio esta vacío" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_2">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="492,472" sap2010:WorkflowViewState.IdRef="Sequence_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -231,7 +231,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Exepcion" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -325,6 +325,6 @@
         <uix:TargetApp Area="-8, -8, 1936, 1056" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJmSURBVDhPdZJfSNNRFMf3fy1Tl+QWUWCbjdDJ/jFaNUY0M5lMRYmSgsgyiIoiUtdDgWAEuRmUFsYUaoGBMJqsTG3WDLFeeomMnnqIfIgkKMuarm/n3u23fgt6+PD7/c7vns89554r+f1cIkZGuIheYo74RaTe3FPOvY6oQunMv7wc8YeaCBMQszgpw4VWPQJH9LjVWcRiEUJD5AlY8gyRl8x4FFoFm90Ci92BrhM6Ic7WcglLlv18Kg33B0pxM7AOD3vX4P2IDOnpjOBTXAHnNht2eayorzFRRVJBMiAIXMtJCZp9W2BxOOHabsfOHVb4q40Yu1aA+VEFGmor8epuIc4cLkdTTRmWElySIgxMwA4Mdy4VckFDrRnfnsgx0bcWx/dvRjyoQdepMr7r5zEl7E4HXg6uFqqIMQE7bVAb8Hm3ov2oESvTmTLnY3LM3lbh7X0NFhMKfJ1UYeSKltqSC4IFJmCj4oHh7mK43TZ8HFVnJbl+OctJKaZuqMSxNBOwXnLB0y16HPRvRLxHLV74P7iAtyAgnH5nm4E/J/pKEA2W8vfg+U1U2d+1BG8hJArkONBYiQ8P1DjUXIFGXxW+PFZgn9+c2yBLlAlcKzTGqf4CXG8vweWTOrwbVqLjmAGR7vXweGyo3m1FtEeHjjajOHmJMDGB5EdCGqnbU8HH6HCY4XUbcPXsBjTVVfGkc63laKGKxqkdkWCI5XIBna5m6GLRzIswjYtuWuqZlEqW851nB4uRHNBir9eC74nc+MYJbU6Qhd1tdj3zpvIPrGy2M09miAUCBiJGLBDpLOw9SpgI0VqJ5A8AKkxy04IhsAAAAABJRU5ErkJggg==" InformativeScreenshot="566d7f983071134244059d5c82dce74a.jpg" Selector="&lt;html app='chrome.exe' title='WikiDex, la enciclopedia Pokémon' /&gt;" Title="Nueva pestaña" Url="[urlWikidex]" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
-    <ui:LogMessage DisplayName="Registrar mensaje final" sap:VirtualizedContainerService.HintSize="626,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos el módulo de pokemon&quot;]" />
+    <ui:LogMessage DisplayName="Registrar mensaje final" sap:VirtualizedContainerService.HintSize="626,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos el módulo de la búsqueda pokemon en la wikidex&quot;]" />
   </Sequence>
 </Activity>

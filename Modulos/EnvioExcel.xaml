@@ -124,7 +124,7 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[cuerpo]" DisplayName="Enviar mensaje de correo SMTP" Email="[in_cuentaCorreo]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="423,152" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="[in_password]" Port="587" SecureConnection="Auto" Server="smtp-mail.outlook.com" Subject="[asunto]" To="[in_correoEnvio]">
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[cuerpo]" DisplayName="Enviar mensaje de correo SMTP con el excel completo" Email="[in_cuentaCorreo]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="423,152" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="[in_password]" Port="587" SecureConnection="Auto" Server="smtp-mail.outlook.com" Subject="[asunto]" To="[in_correoEnvio]">
       <ui:SendMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
           <InArgument x:TypeArguments="x:String">[in_ruta]</InArgument>
