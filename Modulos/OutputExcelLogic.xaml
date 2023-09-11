@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="OutputExcelLogic" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1117,8464" sap2010:WorkflowViewState.IdRef="OutputExcelLogic_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="OutputExcelLogic" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1139,8403" sap2010:WorkflowViewState.IdRef="OutputExcelLogic_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -125,7 +125,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,8399" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,8338" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="pokemon_dt" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="data_query" />
@@ -171,7 +171,7 @@
               <OutArgument x:TypeArguments="x:String">[ruta_excel]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">[".\pokemons_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx"]</InArgument>
+              <InArgument x:TypeArguments="x:String">[".\resources\pokemons_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx"]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
@@ -192,14 +192,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SelectfromDatabase.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="530,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SelectfromDatabase.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Modulos\SelectfromDatabase.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="530,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Modulos\SelectfromDatabase.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_dataToSelect">[data_query]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_pokemon">AAAAAAAAAAAAAAAAAAAA</InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt">[pokemon_dt]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <If Condition="[cabeceras.Contains(&quot;pokemon_name&quot;)]" DisplayName="Necesito al menos un el nombre del pokémon" sap:VirtualizedContainerService.HintSize="530,1231" sap2010:WorkflowViewState.IdRef="If_13">
+    <If Condition="[cabeceras.Contains(&quot;pokemon_name&quot;)]" DisplayName="Necesito al menos un el nombre del pokémon" sap:VirtualizedContainerService.HintSize="530,1230" sap2010:WorkflowViewState.IdRef="If_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -207,7 +206,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="476,871" sap2010:WorkflowViewState.IdRef="Sequence_69">
+        <Sequence sap:VirtualizedContainerService.HintSize="476,870" sap2010:WorkflowViewState.IdRef="Sequence_69">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -218,7 +217,7 @@
               <OutArgument x:TypeArguments="x:String">[pokemon_name]</OutArgument>
             </ui:GetRowItem.Value>
           </ui:GetRowItem>
-          <Assign DisplayName="Poner la primera letra en mayúscula" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_50">
+          <Assign DisplayName="Poner la primera letra en mayúscula" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_50">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[pokemon_name]</OutArgument>
             </Assign.To>
@@ -361,7 +360,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteRange>
-    <If Condition="[cabeceras.Contains(&quot;abilities&quot;)]" DisplayName="Si se ha pedido &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="530,1610" sap2010:WorkflowViewState.IdRef="If_10">
+    <If Condition="[cabeceras.Contains(&quot;abilities&quot;)]" DisplayName="Si se ha pedido &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="530,1550" sap2010:WorkflowViewState.IdRef="If_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -369,7 +368,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="452,1428" sap2010:WorkflowViewState.IdRef="Sequence_63">
+        <Sequence sap:VirtualizedContainerService.HintSize="452,1368" sap2010:WorkflowViewState.IdRef="Sequence_63">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -382,19 +381,19 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:DeserializeJsonArray>
-          <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Selecciono la propiedad &quot;name&quot; de cada JObject del JArray &quot;abilities&quot;.&#xD;&#xA;El resultado es un IEnumerable" CurrentIndex="[ability_idx]" DisplayName="Rellenar la columna &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="410,564" sap2010:WorkflowViewState.IdRef="ForEach`1_21" Values="[abilities.Select(Function (a) a(&quot;name&quot;).ToString)]">
+          <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Selecciono la propiedad &quot;name&quot; de cada JObject del JArray &quot;abilities&quot;.&#xA;El resultado es un IEnumerable" CurrentIndex="[ability_idx]" DisplayName="Rellenar la columna &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="410,504" sap2010:WorkflowViewState.IdRef="ForEach`1_21" Values="[abilities.Select(Function (a) a(&quot;name&quot;).ToString)]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="x:String">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:String" Name="ab_name" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,336" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,276" sap2010:WorkflowViewState.IdRef="Sequence_55">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xD;&#xA;- La columna donde está &quot;ab_name&quot; (&quot;abilities_idx&quot;), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65" Cell="[chr(abilities_idx + 65) + (ability_idx + 2).ToString]" DisplayName="Añadir ab_name a la columna" sap:VirtualizedContainerService.HintSize="334,248" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="[pokemon_name]" Text="[ab_name]" WorkbookPath="[ruta_excel]">
+                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xA;- La columna donde está &quot;ab_name&quot; (&quot;abilities_idx&quot;), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65" Cell="[chr(abilities_idx + 65) + (ability_idx + 2).ToString]" DisplayName="Añadir ab_name a la columna" sap:VirtualizedContainerService.HintSize="334,188" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="[pokemon_name]" Text="[ab_name]" WorkbookPath="[ruta_excel]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -410,7 +409,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEach>
-          <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Selecciono la propiedad &quot;hidden&quot; de cada JObject del JArray &quot;abilities&quot;.&#xD;&#xA;El resultado es un IEnumerable" CurrentIndex="[ability_idx]" DisplayName="Rellenar la columna &quot;ab_hidden&quot;" sap:VirtualizedContainerService.HintSize="410,594" sap2010:WorkflowViewState.IdRef="ForEach`1_22" Values="[abilities.Select(Function (a) a(&quot;hidden&quot;).ToString)]">
+          <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Selecciono la propiedad &quot;hidden&quot; de cada JObject del JArray &quot;abilities&quot;.&#xA;El resultado es un IEnumerable" CurrentIndex="[ability_idx]" DisplayName="Rellenar la columna &quot;ab_hidden&quot;" sap:VirtualizedContainerService.HintSize="410,594" sap2010:WorkflowViewState.IdRef="ForEach`1_22" Values="[abilities.Select(Function (a) a(&quot;hidden&quot;).ToString)]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="x:String">
                 <ActivityAction.Argument>
@@ -422,7 +421,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xD;&#xA;- La columna donde está &quot;ab_hidden&quot;, que es la que está a la derecha de &quot;abilities_idx&quot; (por lo que &quot;abilities_idx + 1), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65&#xD;&#xA;- La fila es el índice de la iteración actual de este bucle (&quot;ability_idx&quot;) empezando en 0. Como las filas en Excel empieza desde 1, le sumo 1, y como la primera fila es la cabecera, le sumo otro 1" Cell="[chr(abilities_idx + 65 + 1) + (ability_idx + 2).ToString]" DisplayName="Añadir ab_hidden a la columna" sap:VirtualizedContainerService.HintSize="334,263" sap2010:WorkflowViewState.IdRef="WriteCell_5" SheetName="[pokemon_name]" Text="[ab_hidden]" WorkbookPath="[ruta_excel]">
+                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xA;- La columna donde está &quot;ab_hidden&quot;, que es la que está a la derecha de &quot;abilities_idx&quot; (por lo que &quot;abilities_idx + 1), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65&#xA;- La fila es el índice de la iteración actual de este bucle (&quot;ability_idx&quot;) empezando en 0. Como las filas en Excel empieza desde 1, le sumo 1, y como la primera fila es la cabecera, le sumo otro 1" Cell="[chr(abilities_idx + 65 + 1) + (ability_idx + 2).ToString]" DisplayName="Añadir ab_hidden a la columna" sap:VirtualizedContainerService.HintSize="334,263" sap2010:WorkflowViewState.IdRef="WriteCell_5" SheetName="[pokemon_name]" Text="[ab_hidden]" WorkbookPath="[ruta_excel]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -491,7 +490,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xD;&#xA;- La columna donde está &quot;types&quot; (&quot;types_idx&quot;), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65&#xD;&#xA;- La fila es el índice de la iteración actual de este bucle (&quot;type_idx&quot;) empezando en 0. Como las filas en Excel empieza desde 1, le sumo 1, y como la primera fila es la cabecera, le sumo otro 1" Cell="[chr(types_idx + 65) + (type_idx + 2).ToString]" DisplayName="Añadir type a la columna" sap:VirtualizedContainerService.HintSize="334,248" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="[pokemon_name]" Text="[type]" WorkbookPath="[ruta_excel]">
+                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xA;- La columna donde está &quot;types&quot; (&quot;types_idx&quot;), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65&#xA;- La fila es el índice de la iteración actual de este bucle (&quot;type_idx&quot;) empezando en 0. Como las filas en Excel empieza desde 1, le sumo 1, y como la primera fila es la cabecera, le sumo otro 1" Cell="[chr(types_idx + 65) + (type_idx + 2).ToString]" DisplayName="Añadir type a la columna" sap:VirtualizedContainerService.HintSize="334,248" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="[pokemon_name]" Text="[type]" WorkbookPath="[ruta_excel]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -561,7 +560,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xD;&#xA;- La columna donde está &quot;moves&quot; (&quot;moves_idx&quot;), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65&#xD;&#xA;- La fila es el índice de la iteración actual de este bucle (&quot;move_idx&quot;) empezando en 0. Como las filas en Excel empieza desde 1, le sumo 1, y como la primera fila es la cabecera, le sumo otro 1" Cell="[chr(moves_idx + 65) + (move_idx + 2).ToString]" DisplayName="Añadir move a la columna" sap:VirtualizedContainerService.HintSize="334,248" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="[pokemon_name]" Text="[move]" WorkbookPath="[ruta_excel]">
+                  <ui:WriteCell sap2010:Annotation.AnnotationText="La celda que relleno tiene las siguientes coordenadas:&#xA;- La columna donde está &quot;moves&quot; (&quot;moves_idx&quot;), y como lo tengo que pasar a letra, le sumo el código ASCII de la &quot;A&quot; que es 65&#xA;- La fila es el índice de la iteración actual de este bucle (&quot;move_idx&quot;) empezando en 0. Como las filas en Excel empieza desde 1, le sumo 1, y como la primera fila es la cabecera, le sumo otro 1" Cell="[chr(moves_idx + 65) + (move_idx + 2).ToString]" DisplayName="Añadir move a la columna" sap:VirtualizedContainerService.HintSize="334,248" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="[pokemon_name]" Text="[move]" WorkbookPath="[ruta_excel]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -598,7 +597,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
             </ActivityAction.Argument>
-            <ueab:AutoFitX sap2010:Annotation.AnnotationText="El rango se compone de:&#xD;&#xA;- Arriba a la derecha (&quot;A1&quot;)&#xD;&#xA;* Hasta el número de columnas que haya (sumando 65 (&quot;A&quot;) para convertirlo en una letra con &quot;chr()&quot;)&#xD;&#xA;* Hasta el número de filas de las columna que más filas tenga (más 1 por la cabecera)" Columns="True" DisplayName="Rango de ajuste automático" sap:VirtualizedContainerService.HintSize="434,218" sap2010:WorkflowViewState.IdRef="AutoFitX_2" Range="[Excel.Sheet(pokemon_name).Range(&quot;A1:&quot; + chr(cabeceras.Count + 65) + (Math.Max(abilities.Count, Math.Max(types.Length, moves.Length)) + 1).ToString)]" Rows="False">
+            <ueab:AutoFitX sap2010:Annotation.AnnotationText="El rango se compone de:&#xA;- Arriba a la derecha (&quot;A1&quot;)&#xA;* Hasta el número de columnas que haya (sumando 65 (&quot;A&quot;) para convertirlo en una letra con &quot;chr()&quot;)&#xA;* Hasta el número de filas de las columna que más filas tenga (más 1 por la cabecera)" Columns="True" DisplayName="Rango de ajuste automático" sap:VirtualizedContainerService.HintSize="434,218" sap2010:WorkflowViewState.IdRef="AutoFitX_2" Range="[Excel.Sheet(pokemon_name).Range(&quot;A1:&quot; + chr(cabeceras.Count + 65) + (Math.Max(abilities.Count, Math.Max(types.Length, moves.Length)) + 1).ToString)]" Rows="False">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
