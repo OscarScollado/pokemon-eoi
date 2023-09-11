@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="OutputExcelLogic" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1133,3657" sap2010:WorkflowViewState.IdRef="OutputExcelLogic_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="OutputExcelLogic" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1133,3429" sap2010:WorkflowViewState.IdRef="OutputExcelLogic_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -44,6 +44,8 @@
       <x:String>System.Collections.Specialized</x:String>
       <x:String>UiPath.Web.Activities</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Activities.System.Arrays</x:String>
+      <x:String>UiPath.Activities.System.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -115,326 +117,502 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="786,4420" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,3364" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataTable" Name="dt" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="data">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="New List (Of String) From {&quot;base_att&quot;, &quot;moves&quot;}" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_excel">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="New DataTable()" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Name="pokemon_dt" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="data_query" />
+      <Variable x:TypeArguments="x:String" Name="ruta_excel" />
+      <Variable x:TypeArguments="s:String[]" Name="moves" />
+      <Variable x:TypeArguments="x:Int32" Name="moves_idx" />
+      <Variable x:TypeArguments="s:String[]" Name="types" />
+      <Variable x:TypeArguments="x:Int32" Name="types_idx" />
+      <Variable x:TypeArguments="x:Int32" Name="type_idx" />
+      <Variable x:TypeArguments="x:Int32" Name="move_idx" />
+      <Variable x:TypeArguments="x:Int32" Name="abilities_idx" />
+      <Variable x:TypeArguments="njl:JArray" Name="abilities" />
+      <Variable x:TypeArguments="x:Int32" Name="ability_idx" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="cabeceras" />
+      <Variable x:TypeArguments="x:String" Name="pokemon_name" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SelectfromDatabase.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="724,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SelectfromDatabase.xaml">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="- data_query: las columnas que se le pedirán a la BBDD&#xA;- cabeceras: las cabeceras que hay en la DT&#xA;- ruta_excel: la ruta donde el Excel va a estar almacenado&#xA;- pokemon_name: almacena el nombre del pokemon" DisplayName="Asignación múltiple" sap:VirtualizedContainerService.HintSize="530,266" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="scg:List(x:String)">[data_query]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="scg:List(x:String)">[New List (Of String) From {"pokemon_id", "pokemon_name", "abilities", "types", "base_hp", "base_att", "base_def", "base_spa", "base_spd", "base_speed", "moves", "height", "weight"}]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="scg:List(x:String)">[cabeceras]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="scg:List(x:String)">[data_query]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[ruta_excel]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[".\pokemons_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx"]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[pokemon_name]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">ERROR</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="SelectfromDatabase.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="530,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SelectfromDatabase.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_dataToSelect">
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="data" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_pokemon">
-          <Literal x:TypeArguments="x:String">AAAAAAAAAAAAAAAAAAAA</Literal>
-        </InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt">
-          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt" />
-        </OutArgument>
+        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_dataToSelect">[data_query]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_pokemon">AAAAAAAAAAAAAAAAAAAA</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt">[pokemon_dt]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="724,460" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[data]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="x:String">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:String" Name="column" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_19">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:Object" Name="col_val" />
-            </Sequence.Variables>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:AddDataColumn x:TypeArguments="x:Object" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" AllowDBNull="True" ColumnName="[column]" DataTable="[dt_excel]" DisplayName="Añadir columna de datos" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="724,919" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[data]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="x:String">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:String" Name="column" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,733" sap2010:WorkflowViewState.IdRef="Sequence_20">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:Object" Name="col_val" />
-            </Sequence.Variables>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="[column]" DisplayName="Obtener elemento de fila" sap:VirtualizedContainerService.HintSize="334,187" sap2010:WorkflowViewState.IdRef="GetRowItem_3" Row="[dt.Rows(0)]">
-              <ui:GetRowItem.Value>
-                <OutArgument x:TypeArguments="x:Object">[col_val]</OutArgument>
-              </ui:GetRowItem.Value>
-            </ui:GetRowItem>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[Enumerable.Repeat(&quot;&quot;, data.Count).ToArray()]" DataTable="[dt_excel]" DisplayName="Añadir fila de datos" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_8" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="[column]" DisplayName="Actualizar un elemento de la fila" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_2" Row="[dt_excel.Rows(0)]" Value="[col_val]" />
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
-    <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="724,52" sap2010:WorkflowViewState.IdRef="CommentOut_5">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="512,192" sap2010:WorkflowViewState.IdRef="Sequence_12">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="RefactorizarTypes" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_7">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="s:String[]" Name="types" />
-              <Variable x:TypeArguments="sd:DataTable" Name="types_table" />
-            </Sequence.Variables>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
-              <Assign.To>
-                <OutArgument x:TypeArguments="s:String[]">[types]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="s:String[]">[dt.Select("[types]&lt;&gt;''").First().ItemArray().First().ToString.Split(",", StringSplitOptions.RemoveEmptyEntries)]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <ui:RemoveDataRow RowIndex="{x:Null}" DataTable="[dt]" DisplayName="Quitar fila de datos" sap:VirtualizedContainerService.HintSize="434,186" sap2010:WorkflowViewState.IdRef="RemoveDataRow_2" Row="[dt.Rows(0)]" />
-            <ui:BuildDataTable DataTable="[types_table]" DisplayName="Crear tabla de datos" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;types&quot; msdata:Caption=&quot;&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="434,460" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[types]">
-              <ui:ForEach.Body>
-                <ActivityAction x:TypeArguments="x:String">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="x:String" Name="type" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[new Object() { type }]" DataTable="[types_table]" DisplayName="Añadir fila de datos" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEach.Body>
-            </ui:ForEach>
-            <ui:MergeDataTable Destination="[dt]" DisplayName="Fusionar tabla de datos" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[types_table]" />
-          </Sequence>
-        </Sequence>
-      </ui:CommentOut.Body>
+    <If Condition="[cabeceras.Contains(&quot;pokemon_name&quot;)]" DisplayName="Necesito al menos un el nombre del pokémon" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="If_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
-    <Sequence DisplayName="RefactorizarMoves" sap:VirtualizedContainerService.HintSize="724,2138" sap2010:WorkflowViewState.IdRef="Sequence_11">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="s:String[]" Name="moves" />
-        <Variable x:TypeArguments="sd:DataTable" Name="moves_table" />
-        <Variable x:TypeArguments="sd:DataTable" Name="jdt" />
-        <Variable x:TypeArguments="s:Object[]" Name="stufftoadd" />
-        <Variable x:TypeArguments="x:Int32" Name="idx" />
-        <Variable x:TypeArguments="x:Int32" Name="moves_idx" />
-        <Variable x:TypeArguments="x:Int32" Name="idx_3" />
-      </Sequence.Variables>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="476,799" sap2010:WorkflowViewState.IdRef="Sequence_69">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="pokemon_name" DisplayName="Obtener el nombre" sap:VirtualizedContainerService.HintSize="434,187" sap2010:WorkflowViewState.IdRef="GetRowItem_4" Row="[pokemon_dt.Rows(0)]">
+            <ui:GetRowItem.Value>
+              <OutArgument x:TypeArguments="x:String">[pokemon_name]</OutArgument>
+            </ui:GetRowItem.Value>
+          </ui:GetRowItem>
+          <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_50">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[pokemon_name]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[pokemon_name.Substring(0, 1).ToUpper() + pokemon_name.Substring(1)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="pokemon_name" DataTable="[pokemon_dt]" DisplayName="Quitar la columna que tiene el nombre" sap:VirtualizedContainerService.HintSize="434,186" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_2" />
+          <InvokeMethod DisplayName="Actualizar la lista &quot;cabeceras&quot;" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="InvokeMethod_7" MethodName="Remove">
+            <InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="scg:List(x:String)">[cabeceras]</InArgument>
+            </InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="x:String">pokemon_name</InArgument>
+          </InvokeMethod>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_70">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="Lanzar excepción" Exception="[New Exception(&quot;No hay ningún nombre de pokemon&quot;)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Else>
+    </If>
+    <If Condition="[cabeceras.Contains(&quot;abilities&quot;)]" DisplayName="Si se ha pedido &quot;abilities&quot;, crea una columna nueva &quot;ab_hidden&quot;" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="If_9">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="476,748" sap2010:WorkflowViewState.IdRef="Sequence_61">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Obtener el índice de la columna &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_49">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[abilities_idx]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[cabeceras.IndexOf("abilities")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="ab_hidden" DataTable="[pokemon_dt]" DisplayName="Añadir la columna &quot;ab_hidden&quot;" sap:VirtualizedContainerService.HintSize="434,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_14" />
+          <InvokeMethod DisplayName="Mover la columna &quot;ab_hidden&quot; al lado de &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="SetOrdinal">
+            <InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="sd:DataColumn">[pokemon_dt.Columns("ab_hidden")]</InArgument>
+            </InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="x:Int32">[abilities_idx + 1]</InArgument>
+          </InvokeMethod>
+          <InvokeMethod DisplayName="Actualizar la lista &quot;cabeceras&quot;" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="InvokeMethod_5" MethodName="Insert">
+            <InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="scg:List(x:String)">[cabeceras]</InArgument>
+            </InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="x:Int32">[abilities_idx]</InArgument>
+            <InArgument x:TypeArguments="x:String">ab_hidden</InArgument>
+          </InvokeMethod>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_62" />
+      </If.Else>
+    </If>
+    <If Condition="[cabeceras.Contains(&quot;height&quot;)]" DisplayName="Si se ha pedido &quot;height&quot;, cambiar su nombre" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="If_14">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_75">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Añadir &quot;(cm)&quot; al nombre de la columna" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_54">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[pokemon_dt.Columns("height").ColumnName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">height (cm)</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_76" />
+      </If.Else>
+    </If>
+    <If Condition="[cabeceras.Contains(&quot;weight&quot;)]" DisplayName="Si se ha pedido &quot;height&quot;, cambiar su nombre" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="If_15">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_77">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_55">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[pokemon_dt.Columns("weight").ColumnName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">weight (kg)</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_78" />
+      </If.Else>
+    </If>
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" sap2010:Annotation.AnnotationText="Las columnas que tengan más de una fila se actualizarán a continuación" DataTable="[pokemon_dt]" DisplayName="Meter la DT en el Excel" sap:VirtualizedContainerService.HintSize="530,158" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[pokemon_name]" WorkbookPath="[ruta_excel]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:WriteRange>
+    <If Condition="[cabeceras.Contains(&quot;abilities&quot;)]" DisplayName="Si se ha pedido &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="530,1232" sap2010:WorkflowViewState.IdRef="If_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="662,82" sap2010:WorkflowViewState.IdRef="Assign_5">
-        <Assign.To>
-          <OutArgument x:TypeArguments="s:String[]">[moves]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="s:String[]">[dt.AsEnumerable.Select(Function(r) r("moves").ToString).First().Replace("-"," ").Split(",", StringSplitOptions.RemoveEmptyEntries)]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:BuildDataTable DataTable="[moves_table]" DisplayName="Crear tabla de datos" sap:VirtualizedContainerService.HintSize="662,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_3" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="662,82" sap2010:WorkflowViewState.IdRef="Assign_10">
-        <Assign.To>
-          <OutArgument x:TypeArguments="s:Object[]">[stufftoadd]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="s:String[]">[Enumerable.Repeat("", data.Count).ToArray()]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[idx]" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="662,52" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[data]">
-        <ui:ForEach.Body>
-          <ActivityAction x:TypeArguments="x:String">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="552,666" sap2010:WorkflowViewState.IdRef="Sequence_16">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[currentText = &quot;moves&quot;]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="510,352" sap2010:WorkflowViewState.IdRef="If_1">
-                <If.Then>
-                  <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_12">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:Int32">[moves_idx]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:Int32">[idx]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                  </Sequence>
-                </If.Then>
-                <If.Else>
-                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_18" />
-                </If.Else>
-              </If>
-              <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="[currentText]" DataTable="[moves_table]" DisplayName="Añadir columna de datos" sap:VirtualizedContainerService.HintSize="510,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
-            </Sequence>
-          </ActivityAction>
-        </ui:ForEach.Body>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:ForEach>
-      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[idx_3]" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="662,1418" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[moves]">
-        <ui:ForEach.Body>
-          <ActivityAction x:TypeArguments="x:String">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:String" Name="move" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="628,1232" sap2010:WorkflowViewState.IdRef="Sequence_13">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:Int32" Name="idx_2" />
-              </Sequence.Variables>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[idx_3 = 1]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="586,796" sap2010:WorkflowViewState.IdRef="If_3">
-                <If.Then>
-                  <Sequence sap:VirtualizedContainerService.HintSize="552,444" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="[idx_2]" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="510,356" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[stufftoadd]">
-                      <ui:ForEach.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="currentNumber" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_21">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_20">
-                              <Assign.To>
-                                <OutArgument x:TypeArguments="x:Object">[stufftoadd(idx_2)]</OutArgument>
-                              </Assign.To>
-                              <Assign.Value>
-                                <InArgument x:TypeArguments="x:Object">[dt_excel.Rows(0).Item(idx_2).ToString]</InArgument>
-                              </Assign.Value>
-                            </Assign>
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:ForEach.Body>
-                    </ui:ForEach>
-                  </Sequence>
-                </If.Then>
-                <If.Else>
-                  <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_23">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_19">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="s:Object[]">[stufftoadd]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="s:String[]">[Enumerable.Repeat("", data.Count).ToArray()]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                  </Sequence>
-                </If.Else>
-              </If>
-              <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_13">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[stufftoadd(moves_idx)]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Object">[move]</InArgument>
-                </Assign.Value>
-              </Assign>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[stufftoadd]" DataTable="[moves_table]" DisplayName="Añadir fila de datos" sap:VirtualizedContainerService.HintSize="586,186" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
-            </Sequence>
-          </ActivityAction>
-        </ui:ForEach.Body>
-      </ui:ForEach>
-      <ui:MergeDataTable Destination="[dt_excel]" DisplayName="Fusionar tabla de datos" sap:VirtualizedContainerService.HintSize="662,133" sap2010:WorkflowViewState.IdRef="MergeDataTable_3" MissingSchemaAction="Ignore" Source="[moves_table]" />
-    </Sequence>
-    <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="724,271" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="512,192" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="452,1050" sap2010:WorkflowViewState.IdRef="Sequence_63">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="RefactorizarAbilities" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_5">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="njl:JArray" Name="abilities_jarray" />
-              <Variable x:TypeArguments="sd:DataTable" Name="ability_table" />
-              <Variable x:TypeArguments="sd:DataTable" Name="jdt" />
-            </Sequence.Variables>
+          <ui:DeserializeJsonArray sap2010:Annotation.AnnotationText="Aquí saco la única celda que está dentro de la columna &quot;abilities&quot;. Luego lo separo a un JArray" DisplayName="Obtener el JArray de &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="410,102" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_2" JsonArray="[abilities]" JsonString="[pokemon_dt.AsEnumerable().Aggregate(&quot;&quot;, Function (a, r) a + r.Field(Of String)(&quot;abilities&quot;).ToString)]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:DeserializeJsonArray>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[ability_idx]" DisplayName="Rellenar la columna &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="410,390" sap2010:WorkflowViewState.IdRef="ForEach`1_21" Values="[abilities.Select(Function (a) a(&quot;name&quot;).ToString)]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="ab_name" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,204" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:WriteCell Cell="[chr(abilities_idx + 65) + (ability_idx + 2).ToString]" DisplayName="Añadir ab_name a la columna" sap:VirtualizedContainerService.HintSize="334,116" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="[pokemon_name]" Text="[ab_name]" WorkbookPath="[ruta_excel]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[ability_idx]" DisplayName="Rellenar la columna &quot;ab_hidden&quot;" sap:VirtualizedContainerService.HintSize="410,390" sap2010:WorkflowViewState.IdRef="ForEach`1_22" Values="[abilities.Select(Function (a) a(&quot;hidden&quot;).ToString)]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="ab_hidden" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,204" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:WriteCell Cell="[chr(abilities_idx + 65 + 1) + (ability_idx + 2).ToString]" DisplayName="Añadir ab_hidden a la columna" sap:VirtualizedContainerService.HintSize="334,116" sap2010:WorkflowViewState.IdRef="WriteCell_5" SheetName="[pokemon_name]" Text="[ab_hidden]" WorkbookPath="[ruta_excel]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_64" />
+      </If.Else>
+    </If>
+    <If Condition="[cabeceras.Contains(&quot;types&quot;)]" DisplayName="Si se ha pedido &quot;types&quot;" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="If_11">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="476,764" sap2010:WorkflowViewState.IdRef="Sequence_65">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap2010:Annotation.AnnotationText="Aquí saco la única celda que está dentro de la columna &quot;types&quot;. Luego lo separo a un Array" DisplayName="De string a array -&gt; &quot;types&quot;" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_41">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[types]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[pokemon_dt.Rows(0).Item("types").ToString.Split(",", StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <Assign DisplayName="Obtener el índice de la columna &quot;types&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_42">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[types_idx]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[cabeceras.IndexOf("types")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[type_idx]" DisplayName="Rellenar la columna &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="434,390" sap2010:WorkflowViewState.IdRef="ForEach`1_16" Values="[types]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="type" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,204" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:WriteCell Cell="[chr(types_idx + 65) + (type_idx + 2).ToString]" DisplayName="Añadir type a la columna" sap:VirtualizedContainerService.HintSize="334,116" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="[pokemon_name]" Text="[type]" WorkbookPath="[ruta_excel]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:DeserializeJsonArray DisplayName="Deserializar cadena JSON" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_1" JsonArray="[abilities_jarray]" JsonString="[dt.AsEnumerable().Aggregate(&quot;&quot;, Function (a, r) a + r.Field(Of String)(&quot;abilities&quot;).ToString)]" />
-            <ui:BuildDataTable DataTable="[ability_table]" DisplayName="Crear tabla de datos" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;abilities&quot; msdata:Caption=&quot;&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;ab_hidden&quot; msdata:Caption=&quot;&quot; type=&quot;xs:boolean&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-            <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="434,460" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[abilities_jarray]">
+          </ui:ForEach>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_66" />
+      </If.Else>
+    </If>
+    <If Condition="[cabeceras.Contains(&quot;moves&quot;)]" DisplayName="Si se ha pedido &quot;moves&quot;" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="If_12">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="476,764" sap2010:WorkflowViewState.IdRef="Sequence_67">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap2010:Annotation.AnnotationText="Aquí saco la única celda que está dentro de la columna &quot;moves&quot;. Luego cambio cada &quot;-&quot; por un espacio y lo separo a un Array" DisplayName="De string a array -&gt; &quot;moves&quot;" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_39">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[moves]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[pokemon_dt.Rows(0).Item("moves").ToString.Replace("-"," ").Split(",", StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <Assign DisplayName="Obtener el índice de la columna &quot;moves&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_40">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[moves_idx]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[cabeceras.IndexOf("moves")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[move_idx]" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="434,390" sap2010:WorkflowViewState.IdRef="ForEach`1_17" Values="[moves]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="move" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,204" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:WriteCell Cell="[chr(moves_idx + 65) + (move_idx + 2).ToString]" DisplayName="Añadir move a la columna" sap:VirtualizedContainerService.HintSize="334,116" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="[pokemon_name]" Text="[move]" WorkbookPath="[ruta_excel]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_68" />
+      </If.Else>
+    </If>
+    <ueab:SequenceX DisplayName="Ámbito del proceso de Excel único" sap:VirtualizedContainerService.HintSize="530,496" sap2010:WorkflowViewState.IdRef="SequenceX_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Utilice el archivo de Excel" sap:VirtualizedContainerService.HintSize="468,385" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" ResizeWindow="None" WorkbookPath="[ruta_excel]">
+        <ueab:ExcelApplicationCard.Body>
+          <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
+            </ActivityAction.Argument>
+            <ueab:AutoFitX Columns="True" DisplayName="Rango de ajuste automático" sap:VirtualizedContainerService.HintSize="434,116" sap2010:WorkflowViewState.IdRef="AutoFitX_2" Range="[Excel.Sheet(pokemon_name).Range(&quot;A1:&quot; + chr(cabeceras.Count + 65) + Math.Max(abilities.Count, Math.Max(types.Length, moves.Length + 1)).ToString)]" Rows="False" />
+          </ActivityAction>
+        </ueab:ExcelApplicationCard.Body>
+      </ueab:ExcelApplicationCard>
+    </ueab:SequenceX>
+    <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="610,2004" sap2010:WorkflowViewState.IdRef="Sequence_58">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="RefactorizarAbilities" sap:VirtualizedContainerService.HintSize="548,1893" sap2010:WorkflowViewState.IdRef="Sequence_48">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="sd:DataTable" Name="ability_table" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:BuildDataTable DataTable="[ability_table]" DisplayName="Crear tabla de datos" sap:VirtualizedContainerService.HintSize="486,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Poner encabezados a types_table" sap:VirtualizedContainerService.HintSize="486,1182" sap2010:WorkflowViewState.IdRef="ForEach`1_19" Values="[data_query]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="column" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="452,996" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="[column]" DataTable="[types_table]" DisplayName="Añadir encabezado uno a uno" sap:VirtualizedContainerService.HintSize="410,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_8" />
+                    <If Condition="[column = &quot;abilities&quot;]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="410,456" sap2010:WorkflowViewState.IdRef="If_7">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="ab_hidden" DataTable="[types_table]" DisplayName="Añadir encabezado uno a uno" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_9" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_51" />
+                      </If.Else>
+                    </If>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="[column]" DataTable="[types_table]" DisplayName="Añadir encabezado uno a uno" sap:VirtualizedContainerService.HintSize="410,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_7" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="486,460" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[abilities]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="njl:JToken">
                   <ActivityAction.Argument>
@@ -451,47 +629,369 @@
                 </ActivityAction>
               </ui:ForEach.Body>
             </ui:ForEach>
-            <ui:JoinDataTables DataTable1="[dt]" DataTable2="[ability_table]" DisplayName="Unir tablas de datos" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="JoinDataTables_3" JoinType="Inner" OutputDataTable="[jdt]">
-              <ui:JoinDataTables.Arguments>
-                <scg:List x:TypeArguments="ui:JoinOperationArgument" Capacity="4">
-                  <ui:JoinOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="NOTEQ">
-                    <ui:JoinOperationArgument.Column1>
-                      <InArgument x:TypeArguments="x:String">["abilities"]</InArgument>
-                    </ui:JoinOperationArgument.Column1>
-                    <ui:JoinOperationArgument.Column2>
-                      <InArgument x:TypeArguments="x:String">["abilities"]</InArgument>
-                    </ui:JoinOperationArgument.Column2>
-                  </ui:JoinOperationArgument>
-                </scg:List>
-              </ui:JoinDataTables.Arguments>
-            </ui:JoinDataTables>
-            <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="abilities" DataTable="[jdt]" DisplayName="Quitar columna de datos" sap:VirtualizedContainerService.HintSize="434,186" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1" />
-            <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[jdt.Columns("abilities_1").ColumnName]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">abilities</InArgument>
-              </Assign.Value>
-            </Assign>
-            <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
-              <Assign.To>
-                <OutArgument x:TypeArguments="sd:DataTable">[dt]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="sd:DataTable">[jdt]</InArgument>
-              </Assign.Value>
-            </Assign>
           </Sequence>
         </Sequence>
       </ui:CommentOut.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dt_excel]" DisplayName="Escribir libro de intervalo" sap:VirtualizedContainerService.HintSize="724,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="nombrepokemon" WorkbookPath="[&quot;.\pokemons_&quot; + DateTime.Now.ToString(&quot;yyyyMMdd_HHmmss&quot;) + &quot;.xlsx&quot;]" />
+    <ui:CommentOut DisplayName="types bk" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="710,2744" sap2010:WorkflowViewState.IdRef="Sequence_39">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap2010:Annotation.AnnotationText="Transforma el Array de la columna &quot;types&quot; en una secuencia de filas por cada elemento del Array" DisplayName="RefactorizarTypes" sap:VirtualizedContainerService.HintSize="648,2633" sap2010:WorkflowViewState.IdRef="Sequence_32">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="s:String[]" Name="types" />
+              <Variable x:TypeArguments="sd:DataTable" Name="types_table" />
+              <Variable x:TypeArguments="x:Int32" Name="types_idx" />
+              <Variable x:TypeArguments="x:Int32" Name="fila_idx" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap2010:Annotation.AnnotationText="Aquí saco la única celda que está dentro de la columna &quot;types&quot;. Luego lo separo a un Array" DisplayName="De string a array -&gt; &quot;types&quot;" sap:VirtualizedContainerService.HintSize="586,124" sap2010:WorkflowViewState.IdRef="Assign_31">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[types]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[dt_excel.Rows(0).Item("types").ToString.Split(",", StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <ui:BuildDataTable sap2010:Annotation.AnnotationText="...porque mover un Array a una WB no funciona bien (bug de UIPath)" DataTable="[types_table]" DisplayName="Crear tabla de datos (&quot;types_table&quot;)" sap:VirtualizedContainerService.HintSize="586,102" sap2010:WorkflowViewState.IdRef="BuildDataTable_4" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:BuildDataTable>
+            <Assign DisplayName="Obtener el índice de la columna &quot;moves&quot;" sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_32">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[types_idx]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[data_query.IndexOf("types")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Poner encabezados a types_table" sap:VirtualizedContainerService.HintSize="586,460" sap2010:WorkflowViewState.IdRef="ForEach`1_12" Values="[data_query]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="column" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="[column]" DataTable="[types_table]" DisplayName="Añadir encabezado uno a uno" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[fila_idx]" DisplayName="Rellenar la columna &quot;types&quot;" sap:VirtualizedContainerService.HintSize="586,1077" sap2010:WorkflowViewState.IdRef="ForEach`1_13" Values="[types]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="type" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="552,891" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Int32" Name="idx_2" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If sap2010:Annotation.AnnotationText="...porque la primera fila contiene los datos de las demás columnas" Condition="[fila_idx &lt;&gt; 0]" DisplayName="Si no estamos en la primera fila" sap:VirtualizedContainerService.HintSize="510,383" sap2010:WorkflowViewState.IdRef="If_5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Reiniciar toda la fila" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_33">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:Object[]">[row_content]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="s:Object[]">[fila_vacia.Copy()]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <Assign DisplayName="Poner &quot;type&quot; donde le toca (la fila &quot;types&quot;)" sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_34">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[row_content(types_idx)]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">[type]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Así, las columnas que tengan más de una fila, tendrán los datos que les corresponden, y las demás columnas que no tengan más filas con datos, simplemente recibirán un string vacío" ArrayRow="[row_content]" DataTable="[types_table]" DisplayName="Añadir la fila con los contenidos necesarios" sap:VirtualizedContainerService.HintSize="510,258" sap2010:WorkflowViewState.IdRef="AddDataRow_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:AddDataRow>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:RemoveDataRow RowIndex="{x:Null}" sap2010:Annotation.AnnotationText="Fusionar ambas DTs hace DT1 + DT2, y yo solo quiero transladar los datos de la DT2 -&gt; DT1&#xA;Como la DT1 (&quot;dt_excel&quot;) solamente tiene una fila, solamente la tengo que borrarla y así el resultado será todos los datos de la DT2 (&quot;types_table&quot;) a la DT1" DataTable="[dt_excel]" DisplayName="Quitar la fila de &quot;dt_excel&quot;" sap:VirtualizedContainerService.HintSize="586,273" sap2010:WorkflowViewState.IdRef="RemoveDataRow_7" Row="[dt_excel.Rows(0)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:RemoveDataRow>
+            <ui:MergeDataTable Destination="[dt_excel]" DisplayName="Volcar todas las filas a &quot;dt_excel&quot;" sap:VirtualizedContainerService.HintSize="586,133" sap2010:WorkflowViewState.IdRef="MergeDataTable_7" MissingSchemaAction="Add" Source="[types_table]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:MergeDataTable>
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="moves bk" sap:VirtualizedContainerService.HintSize="530,52" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="710,2775" sap2010:WorkflowViewState.IdRef="Sequence_43">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap2010:Annotation.AnnotationText="Transforma el Array de la columna &quot;moves&quot; en una secuencia de filas por cada elemento del Array" DisplayName="RefactorizarMoves" sap:VirtualizedContainerService.HintSize="648,2664" sap2010:WorkflowViewState.IdRef="Sequence_34">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="s:String[]" Name="moves" />
+              <Variable x:TypeArguments="sd:DataTable" Name="moves_table" />
+              <Variable x:TypeArguments="x:Int32" Name="moves_idx" />
+              <Variable x:TypeArguments="x:Int32" Name="fila_idx" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap2010:Annotation.AnnotationText="Aquí saco la única celda que está dentro de la columna &quot;moves&quot;. Luego cambio cada &quot;-&quot; por un espacio y lo separo a un Array" DisplayName="De string a array -&gt; &quot;moves&quot;" sap:VirtualizedContainerService.HintSize="586,124" sap2010:WorkflowViewState.IdRef="Assign_35">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[moves]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[dt_excel.Rows(0).Item("moves").ToString.Replace("-"," ").Split(",", StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <ui:BuildDataTable sap2010:Annotation.AnnotationText="...porque mover un Array a una WB no funciona bien (bug de UIPath)" DataTable="[moves_table]" DisplayName="Crear tabla de datos (&quot;moves_table&quot;)" sap:VirtualizedContainerService.HintSize="586,102" sap2010:WorkflowViewState.IdRef="BuildDataTable_5" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:BuildDataTable>
+            <Assign DisplayName="Obtener el índice de la columna &quot;moves&quot;" sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_36">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[moves_idx]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[data_query.IndexOf("moves")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Poner encabezados a moves_table" sap:VirtualizedContainerService.HintSize="586,460" sap2010:WorkflowViewState.IdRef="ForEach`1_14" Values="[data_query]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="column" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,274" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="[column]" DataTable="[moves_table]" DisplayName="Añadir encabezado uno a uno" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_6" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:ForEach x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="No puedo incrustar columnas en la DT directamente, por lo que tengo que meter cada dato fila por fila" CurrentIndex="[fila_idx]" DisplayName="Rellenar la columna &quot;moves&quot;" sap:VirtualizedContainerService.HintSize="586,1108" sap2010:WorkflowViewState.IdRef="ForEach`1_15" Values="[moves]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="move" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="552,891" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Int32" Name="idx_2" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If sap2010:Annotation.AnnotationText="...porque la primera fila contiene los datos de las demás columnas" Condition="[fila_idx &lt;&gt; 0]" DisplayName="Si no estamos en la primera fila" sap:VirtualizedContainerService.HintSize="510,383" sap2010:WorkflowViewState.IdRef="If_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Reiniciar toda la fila" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_37">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:Object[]">[row_content]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="s:Object[]">[fila_vacia.Copy()]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <Assign DisplayName="Poner &quot;move&quot; donde le toca (la fila &quot;moves&quot;)" sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_38">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[row_content(moves_idx)]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">[move]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Así, las columnas que tengan más de una fila, tendrán los datos que les corresponden, y las demás columnas que no tengan más filas con datos, simplemente recibirán un string vacío" ArrayRow="[row_content]" DataTable="[moves_table]" DisplayName="Añadir la fila con los contenidos necesarios" sap:VirtualizedContainerService.HintSize="510,258" sap2010:WorkflowViewState.IdRef="AddDataRow_11">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:AddDataRow>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:RemoveDataRow RowIndex="{x:Null}" sap2010:Annotation.AnnotationText="Fusionar ambas DTs hace DT1 + DT2, y yo solo quiero transladar los datos de la DT2 -&gt; DT1&#xA;Como la DT1 (&quot;dt_excel&quot;) solamente tiene una fila, solamente la tengo que borrarla y así el resultado será todos los datos de la DT2 (&quot;moves_table&quot;) a la DT1" DataTable="[dt_excel]" DisplayName="Quitar la fila de &quot;dt_excel&quot;" sap:VirtualizedContainerService.HintSize="586,273" sap2010:WorkflowViewState.IdRef="RemoveDataRow_8" Row="[dt_excel.Rows(0)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:RemoveDataRow>
+            <ui:MergeDataTable Destination="[dt_excel]" DisplayName="Volcar todas las filas a &quot;dt_excel&quot;" sap:VirtualizedContainerService.HintSize="586,133" sap2010:WorkflowViewState.IdRef="MergeDataTable_8" MissingSchemaAction="Add" Source="[moves_table]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:MergeDataTable>
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
   </Sequence>
 </Activity>
