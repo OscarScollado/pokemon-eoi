@@ -1,5 +1,5 @@
 ﻿{
-	"pathSaveExcel" :				"C:\\Users\\jonimm98\\Desktop\\ExcelProyecto",
+	"pathSaveExcel" :				"C:\\Users\\jonimm98\\Documents\\UiPath\\pokemon-eoi\\resources",
 	"OrchestratorQueueName":	"RobotPokemon",
 	"OrchestratorFolder":				"Shared",
 	
