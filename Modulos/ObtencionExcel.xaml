@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,2341</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,2249</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GmailPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -143,7 +143,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="625,2276" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="625,2184" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="listaOutlook" />
       <Variable x:TypeArguments="x:Int32" Name="puerto" />
@@ -195,24 +195,6 @@
         <InArgument x:TypeArguments="x:String">[New System.Net.NetworkCredential("",in_password).Password]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="563,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="450,191" sap2010:WorkflowViewState.IdRef="Sequence_6">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:DeleteFileX DisplayName="Eliminar archivo input_pokemon" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[rutaExcel]" />
-        </Sequence>
-      </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
     <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="Obtener los mensajes de la cuenta de outlook que pongamos." DeleteMessages="True" DisplayName="Obtener mensajes de correo IMAP" Email="[in_cuentaCorreo]" EnableSSL="True" FilterExpressionCharacterSet="US-ASCII" sap:VirtualizedContainerService.HintSize="563,82" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_5" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[listaOutlook]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Password="[SecuredPass]" Port="[puerto]" SecureConnection="Auto" Server="[serverOutlook]" Top="1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -256,7 +238,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:LogMessage DisplayName="Registrar mensaje Inicio" sap:VirtualizedContainerService.HintSize="501,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Inicio de la comprobación&quot;]" />
-      <ui:FileExistsX DisplayName="El archivo existe FuncionadoraDatos" Exists="[boolExcel]" sap:VirtualizedContainerService.HintSize="501,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[rutaExcel]" />
+      <ui:FileExistsX DisplayName="El archivo existe input_pokemon" Exists="[boolExcel]" sap:VirtualizedContainerService.HintSize="501,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[rutaExcel]" />
       <ui:IfElseIf DisplayName="Else If el archivo no existe" sap:VirtualizedContainerService.HintSize="501,578" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
         <ui:IfElseIf.ConditionBlocks>
           <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
@@ -268,7 +250,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Registrar mensaje no existe el archivo" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Error]" Message="[&quot;El archivo no existe&quot;]" />
+                  <ui:LogMessage DisplayName="Registrar mensaje no existe el archivo" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Error]" Message="[&quot;El archivo &quot; + rutaExcel + &quot; no existe&quot;]" />
                   <Throw DisplayName="Lanzar excepción excel" Exception="[in_exceptionExcel]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
                 </Sequence>
               </ui:IfElseIfBlock.Then>
