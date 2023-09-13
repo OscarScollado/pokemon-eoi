@@ -1,13 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ObtencionExcel" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ObtencionExcel" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_cuentaCorreo" Type="InArgument(x:String)" />
     <x:Property Name="in_password" Type="InArgument(ss:SecureString)" />
-    <x:Property Name="in_exceptionExcel" Type="InArgument(s:Exception)" />
     <x:Property Name="in_rutaExcelGuardado" Type="InArgument(x:String)" />
   </x:Members>
-  <this:ObtencionExcel.in_exceptionExcel>
-    <InArgument x:TypeArguments="s:Exception" />
-  </this:ObtencionExcel.in_exceptionExcel>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -195,7 +191,7 @@
         <InArgument x:TypeArguments="x:String">[New System.Net.NetworkCredential("",in_password).Password]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="Obtener los mensajes de la cuenta de outlook que pongamos." DeleteMessages="True" DisplayName="Obtener mensajes de correo IMAP" Email="[in_cuentaCorreo]" EnableSSL="True" FilterExpressionCharacterSet="US-ASCII" sap:VirtualizedContainerService.HintSize="563,82" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_5" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[listaOutlook]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Password="[SecuredPass]" Port="[puerto]" SecureConnection="Auto" Server="[serverOutlook]" Top="1">
+    <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="Obtener los mensajes de la cuenta de outlook que pongamos." DeleteMessages="False" DisplayName="Obtener mensajes de correo IMAP" Email="[in_cuentaCorreo]" EnableSSL="True" FilterExpressionCharacterSet="US-ASCII" sap:VirtualizedContainerService.HintSize="563,82" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_5" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[listaOutlook]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Password="[SecuredPass]" Port="[puerto]" SecureConnection="Auto" Server="[serverOutlook]" Top="1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -251,7 +247,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:LogMessage DisplayName="Registrar mensaje no existe el archivo" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Error]" Message="[&quot;El archivo &quot; + rutaExcel + &quot; no existe&quot;]" />
-                  <Throw DisplayName="Lanzar excepción excel" Exception="[in_exceptionExcel]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                  <Throw DisplayName="Lanzar excepción excel" Exception="[new SystemException(&quot;El archivo &quot; + rutaExcel + &quot; no existe&quot;)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
                 </Sequence>
               </ui:IfElseIfBlock.Then>
             </ui:IfElseIfBlock>
