@@ -2,12 +2,11 @@
   <x:Members>
     <x:Property Name="in_cuentaCorreo" Type="InArgument(x:String)" />
     <x:Property Name="in_password" Type="InArgument(ss:SecureString)" />
-    <x:Property Name="in_rutaExcelGuardado" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,2249</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,2371</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GmailPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -132,6 +131,10 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -139,13 +142,14 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="625,2184" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="625,2306" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="listaOutlook" />
       <Variable x:TypeArguments="x:Int32" Name="puerto" />
       <Variable x:TypeArguments="x:String" Name="serverOutlook" />
       <Variable x:TypeArguments="x:String" Name="SecuredPass" />
       <Variable x:TypeArguments="x:String" Name="rutaExcel" />
+      <Variable x:TypeArguments="x:String" Name="rutaGuardado" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -172,12 +176,12 @@
               <InArgument x:TypeArguments="x:String">outlook.office365.com</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
             <ui:AssignOperation.To>
               <OutArgument x:TypeArguments="x:String">[rutaExcel]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">resources\input_pokemon.xlsx</InArgument>
+              <InArgument x:TypeArguments="x:String">.\resources\input_pokemon_</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
         </scg:List>
@@ -191,13 +195,21 @@
         <InArgument x:TypeArguments="x:String">[New System.Net.NetworkCredential("",in_password).Password]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="Obtener los mensajes de la cuenta de outlook que pongamos." DeleteMessages="False" DisplayName="Obtener mensajes de correo IMAP" Email="[in_cuentaCorreo]" EnableSSL="True" FilterExpressionCharacterSet="US-ASCII" sap:VirtualizedContainerService.HintSize="563,82" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_5" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[listaOutlook]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Password="[SecuredPass]" Port="[puerto]" SecureConnection="Auto" Server="[serverOutlook]" Top="1">
+    <ui:GetIMAPMailMessages ClientName="{x:Null}" ClientVersion="{x:Null}" FilterExpression="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" sap2010:Annotation.AnnotationText="Obtener los mensajes de la cuenta de outlook que pongamos." DeleteMessages="False" DisplayName="Obtener mensajes de correo IMAP" Email="[in_cuentaCorreo]" EnableSSL="True" FilterExpressionCharacterSet="US-ASCII" sap:VirtualizedContainerService.HintSize="563,82" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_5" IgnoreCRL="False" MailFolder="Inbox" MarkAsRead="False" Messages="[listaOutlook]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Password="[SecuredPass]" Port="[puerto]" SecureConnection="Auto" Server="[serverOutlook]" Top="1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetIMAPMailMessages>
+    <Assign DisplayName="Asignar fecha a excel" sap:VirtualizedContainerService.HintSize="563,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[rutaExcel]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[".\resources\input_pokemon_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx"]</InArgument>
+      </Assign.Value>
+    </Assign>
     <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="Para cada correo" sap:VirtualizedContainerService.HintSize="563,362" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[listaOutlook]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="snm:MailMessage">
@@ -213,7 +225,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:SaveMailAttachments Attachments="[archivosAdjuntos]" DisplayName="Guardar archivos adjuntos" ExcludeInlineAttachments="False" Filter="xlsx" FolderPath="[in_rutaExcelGuardado]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMail]" OverwriteExisting="False">
+            <ui:SaveMailAttachments Attachments="[archivosAdjuntos]" DisplayName="Guardar archivos adjuntos" ExcludeInlineAttachments="False" Filter="xlsx" FolderPath="[rutaExcel]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMail]" OverwriteExisting="False">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>

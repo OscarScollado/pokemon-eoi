@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>985,852</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,838</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -132,11 +132,11 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Get the next transaction to be processed." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="251,113" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Get the next transaction to be processed." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="658,2519" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
-        <TryCatch DisplayName="Intentar capturar" sap:VirtualizedContainerService.HintSize="613,2322" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+        <TryCatch DisplayName="Intentar capturar" sap:VirtualizedContainerService.HintSize="612,2100" sap2010:WorkflowViewState.IdRef="TryCatch_13">
           <TryCatch.Try>
-            <Sequence sap2010:Annotation.AnnotationText="Retrieve a new transaction data to be processed.&#xA;The TransactionNumber variable holds the current transaction number and incrementing this variable makes the framework retrieve the next transaction. If the framework is retrying a failed transaction, this variable is not incremented until the maximum number of retry attempts is reached." DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="575,2094" sap2010:WorkflowViewState.IdRef="Sequence_25">
+            <Sequence sap2010:Annotation.AnnotationText="Retrieve a new transaction data to be processed.&#xA;The TransactionNumber variable holds the current transaction number and incrementing this variable makes the framework retrieve the next transaction. If the framework is retrying a failed transaction, this variable is not incremented until the maximum number of retry attempts is reached." DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="574,1872" sap2010:WorkflowViewState.IdRef="Sequence_25">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Boolean" Name="ShouldStop" />
               </Sequence.Variables>
@@ -147,8 +147,8 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:ShouldStop DisplayName="Check Stop Signal" sap:VirtualizedContainerService.HintSize="513,90" sap2010:WorkflowViewState.IdRef="ShouldStop_2" Result="[ShouldStop]" />
-              <If Condition="[ShouldStop]" DisplayName="Should Stop or Get Next" sap:VirtualizedContainerService.HintSize="513,615" sap2010:WorkflowViewState.IdRef="If_11">
+              <ui:ShouldStop DisplayName="Check Stop Signal" sap:VirtualizedContainerService.HintSize="512,90" sap2010:WorkflowViewState.IdRef="ShouldStop_2" Result="[ShouldStop]" />
+              <If Condition="[ShouldStop]" DisplayName="Should Stop or Get Next" sap:VirtualizedContainerService.HintSize="512,615" sap2010:WorkflowViewState.IdRef="If_11">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -187,7 +187,7 @@
                   </Assign>
                 </If.Else>
               </If>
-              <Sequence DisplayName="ObtenciónDelExcel" sap:VirtualizedContainerService.HintSize="513,1126" sap2010:WorkflowViewState.IdRef="Sequence_46">
+              <Sequence DisplayName="ObtenciónDelExcel" sap:VirtualizedContainerService.HintSize="512,904" sap2010:WorkflowViewState.IdRef="Sequence_46">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="NombreExcel" />
                 </Sequence.Variables>
@@ -197,7 +197,7 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:MultipleAssign DisplayName="Inicialización de variables" sap:VirtualizedContainerService.HintSize="451,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+                <ui:MultipleAssign DisplayName="Inicialización de variables" sap:VirtualizedContainerService.HintSize="450,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
                   <ui:MultipleAssign.AssignOperations>
                     <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                       <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
@@ -213,24 +213,41 @@
                           <OutArgument x:TypeArguments="x:String">[NombreExcel]</OutArgument>
                         </ui:AssignOperation.To>
                         <ui:AssignOperation.Value>
-                          <InArgument x:TypeArguments="x:String">resources\input_pokemon.xlsx</InArgument>
+                          <InArgument x:TypeArguments="x:String">resources\*.xlsx</InArgument>
                         </ui:AssignOperation.Value>
                       </ui:AssignOperation>
                     </scg:List>
                   </ui:MultipleAssign.AssignOperations>
                 </ui:MultipleAssign>
-                <ui:IfElseIf DisplayName="Si el archivo excel input_pokemon existe" sap:VirtualizedContainerService.HintSize="451,275" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
-                  <ui:IfElseIf.ConditionBlocks>
-                    <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                      <ui:IfElseIfBlock BlockType="If" Condition="[new FileInfo(NombreExcel).Exists]">
-                        <ui:IfElseIfBlock.Then>
-                          <ui:DeleteFileX sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[NombreExcel]" />
-                        </ui:IfElseIfBlock.Then>
-                      </ui:IfElseIfBlock>
-                    </sc:BindingList>
-                  </ui:IfElseIf.ConditionBlocks>
-                </ui:IfElseIf>
-                <Sequence DisplayName="Credenciales" sap:VirtualizedContainerService.HintSize="451,254" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="513,387" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:IfElseIf DisplayName="Si el archivo excel input_pokemon existe" sap:VirtualizedContainerService.HintSize="451,276" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+                        <ui:IfElseIf.ConditionBlocks>
+                          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                            <ui:IfElseIfBlock BlockType="If" Condition="[new FileInfo(NombreExcel).Exists]">
+                              <ui:IfElseIfBlock.Then>
+                                <ui:DeleteFileX sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_3" Path="[NombreExcel]" />
+                              </ui:IfElseIfBlock.Then>
+                            </ui:IfElseIfBlock>
+                          </sc:BindingList>
+                        </ui:IfElseIf.ConditionBlocks>
+                      </ui:IfElseIf>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CommentOut>
+                <Sequence DisplayName="Credenciales" sap:VirtualizedContainerService.HintSize="450,254" sap2010:WorkflowViewState.IdRef="Sequence_43">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -239,7 +256,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="passwordJonathan" CacheStrategy="None" DisplayName="Obtener credencial" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="388,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[SecuredPassword]" Username="[cuentaCorreo]" />
                 </Sequence>
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ObtencionExcel.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="451,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Modulos\ObtencionExcel.xaml">
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ObtencionExcel.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Modulos\ObtencionExcel.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="in_cuentaCorreo">
                       <VisualBasicValue x:TypeArguments="x:String" ExpressionText="cuentaCorreo" />
@@ -247,12 +264,9 @@
                     <InArgument x:TypeArguments="ss:SecureString" x:Key="in_password">
                       <VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="SecuredPassword" />
                     </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_rutaExcelGuardado">
-                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strExcelPath" />
-                    </InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <Assign DisplayName="Asignar strExcelPath a TransactionItem" sap:VirtualizedContainerService.HintSize="451,81" sap2010:WorkflowViewState.IdRef="Assign_37">
+                <Assign DisplayName="Asignar strExcelPath a TransactionItem" sap:VirtualizedContainerService.HintSize="450,82" sap2010:WorkflowViewState.IdRef="Assign_37">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[TransactionItem]</OutArgument>
                   </Assign.To>
@@ -264,7 +278,7 @@
             </Sequence>
           </TryCatch.Try>
           <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="579,21" sap2010:WorkflowViewState.IdRef="Catch`1_14">
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="578,21" sap2010:WorkflowViewState.IdRef="Catch`1_14">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -275,7 +289,7 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Log exception message and end process" sap:VirtualizedContainerService.HintSize="496,496" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                <Sequence DisplayName="Log exception message and end process" sap:VirtualizedContainerService.HintSize="496,495" sap2010:WorkflowViewState.IdRef="Sequence_36">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -373,15 +387,9 @@
                             </ui:MultipleAssign>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InputExcelLogic.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="423,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" UnSafe="False" WorkflowFileName="Modulos\InputExcelLogic.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ExcelPokemon">
-                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="TransactionItem" />
-                                </InArgument>
-                                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_dataToSelect">
-                                  <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="dataToSelect" />
-                                </OutArgument>
-                                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_pokemonToRead">
-                                  <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="pokemonToRead" />
-                                </OutArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_ExcelPokemon">[TransactionItem]</InArgument>
+                                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_dataToSelect">[dataToSelect]</OutArgument>
+                                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_pokemonToRead">[pokemonToRead]</OutArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                             <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="423,649" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[pokemonToRead]">
@@ -606,9 +614,7 @@
           <Transition.Action>
             <ui:LogMessage DisplayName="Log message (New transaction retrieved)" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[&quot; Procesamos la lógica del dispatcher&quot;]" />
           </Transition.Action>
-          <Transition.Condition>
-            <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="TransactionItem IsNot Nothing" />
-          </Transition.Condition>
+          <Transition.Condition>[TransactionItem IsNot Nothing]</Transition.Condition>
         </Transition>
         <Transition sap2010:Annotation.AnnotationText="This is a simple mecanism to stop the process.&#xA;In reallife scenario you can stop the process when there is no more data to process or on a schedule." DisplayName="No Data" sap:VirtualizedContainerService.HintSize="450,918" sap2010:WorkflowViewState.IdRef="Transition_7">
           <sap:WorkflowViewStateService.ViewState>
@@ -626,9 +632,7 @@
           <Transition.Action>
             <ui:LogMessage DisplayName="Log message (No more transations available)" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="[UiPath.Core.Activities.LogLevel.Warn]" Message="[&quot;Process finished due to no more transaction data&quot;]" />
           </Transition.Action>
-          <Transition.Condition>
-            <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="TransactionItem Is Nothing" />
-          </Transition.Condition>
+          <Transition.Condition>[TransactionItem Is Nothing]</Transition.Condition>
         </Transition>
       </State.Transitions>
     </State>
@@ -636,7 +640,7 @@
     <x:Reference>__ReferenceID2</x:Reference>
     <State x:Name="__ReferenceID5" sap2010:Annotation.AnnotationText="Read configuration file and initialize applications used in the process." DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="254,104" sap2010:WorkflowViewState.IdRef="State_2">
       <State.Entry>
-        <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="474,356" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+        <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="550,1017" sap2010:WorkflowViewState.IdRef="TryCatch_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -755,10 +759,10 @@
             </Sequence>
           </TryCatch.Try>
           <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="440,193" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -766,7 +770,7 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                 </ActivityAction.Argument>
-                <Assign sap2010:Annotation.AnnotationText="Failures during the initialization are considered system exceptions and lead to the End Process state, thus finalizing the execution." DisplayName="Assign SystemException" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="Assign_21">
+                <Assign sap2010:Annotation.AnnotationText="Failures during the initialization are considered system exceptions and lead to the End Process state, thus finalizing the execution." DisplayName="Assign SystemException" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="Assign_21">
                   <Assign.To>
                     <OutArgument x:TypeArguments="s:Exception">[SystemException]</OutArgument>
                   </Assign.To>
