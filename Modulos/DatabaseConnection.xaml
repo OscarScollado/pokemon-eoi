@@ -122,7 +122,11 @@
   <Sequence DisplayName="DatabaseConnection" sap:VirtualizedContainerService.HintSize="496,897" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ss:SecureString" Name="secureString" />
-      <Variable x:TypeArguments="x:String" Default="Data Source=LAPTOP-VIP89MER\SQLEXPRESS;Initial Catalog=ProyectoRPA;Integrated Security=True;Encrypt=False" Name="connectionString" />
+      <Variable x:TypeArguments="x:String" Name="connectionString">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">Data Source=DESKTOP-SRDLAQK\SQLEXPRESS;Initial Catalog=RPA;User ID=sa;Password=1234;Encrypt=False</Literal>
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="ui:DatabaseConnection" Name="db_connection" />
       <Variable x:TypeArguments="sd:DataTable" Name="dataToInsert" />
       <Variable x:TypeArguments="s:Object[]" Name="data_array" />

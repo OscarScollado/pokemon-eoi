@@ -2,8 +2,8 @@
   <x:Members>
     <x:Property Name="in_cuentaCorreo" Type="InArgument(x:String)" />
     <x:Property Name="in_password" Type="InArgument(ss:SecureString)" />
-    <x:Property Name="in_rutaExcel" Type="InArgument(x:String)" />
     <x:Property Name="in_exceptionExcel" Type="InArgument(s:Exception)" />
+    <x:Property Name="in_rutaExcelGuardado" Type="InArgument(x:String)" />
   </x:Members>
   <this:ObtencionExcel.in_exceptionExcel>
     <InArgument x:TypeArguments="s:Exception" />
@@ -217,7 +217,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:SaveMailAttachments Attachments="[archivosAdjuntos]" DisplayName="Guardar archivos adjuntos" ExcludeInlineAttachments="False" Filter="xlsx" FolderPath="[in_rutaExcel]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMail]" OverwriteExisting="False">
+            <ui:SaveMailAttachments Attachments="[archivosAdjuntos]" DisplayName="Guardar archivos adjuntos" ExcludeInlineAttachments="False" Filter="xlsx" FolderPath="[in_rutaExcelGuardado]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMail]" OverwriteExisting="False">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -237,7 +237,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage DisplayName="Registrar mensaje Inicio" sap:VirtualizedContainerService.HintSize="501,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Inicio de la comprobación&quot;]" />
+      <ui:LogMessage DisplayName="Registrar mensaje Inicio" sap:VirtualizedContainerService.HintSize="501,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Inicio de la comprobación de si existe el excel&quot;]" />
       <ui:FileExistsX DisplayName="El archivo existe input_pokemon" Exists="[boolExcel]" sap:VirtualizedContainerService.HintSize="501,133" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[rutaExcel]" />
       <ui:IfElseIf DisplayName="Else If el archivo no existe" sap:VirtualizedContainerService.HintSize="501,578" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
         <ui:IfElseIf.ConditionBlocks>
@@ -258,7 +258,7 @@
           </sc:BindingList>
         </ui:IfElseIf.ConditionBlocks>
       </ui:IfElseIf>
-      <ui:LogMessage DisplayName="Registrar mensaje Final" sap:VirtualizedContainerService.HintSize="501,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos la comprobación&quot;]" />
+      <ui:LogMessage DisplayName="Registrar mensaje Final" sap:VirtualizedContainerService.HintSize="501,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos la comprobación del excel&quot;]" />
     </Sequence>
   </Sequence>
 </Activity>

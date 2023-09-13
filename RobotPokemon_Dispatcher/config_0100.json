@@ -1,8 +1,7 @@
 ﻿{
 	"pathSaveExcel" :				"C:\\Users\\jonimm98\\Documents\\UiPath\\pokemon-eoi\\resources",
-	"OrchestratorQueueName":	"RobotPokemon",
+	"OrchestratorQueueName":	"ObtencionCorreo",
 	"OrchestratorFolder":				"Shared",
-	
 	
 	
 	"TimeoutSmall" : 				"1000",
