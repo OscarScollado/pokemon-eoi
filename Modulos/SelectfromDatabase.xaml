@@ -3,11 +3,12 @@
     <x:Property Name="in_dataToSelect" Type="InArgument(scg:List(x:String))" />
     <x:Property Name="out_dt" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="in_connection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="in_pokemon_id" Type="InArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>834.4,610.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,641</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SelectfromDatabase_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -99,18 +100,17 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SelectfromDatabase" sap:VirtualizedContainerService.HintSize="496,323.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SelectfromDatabase" sap:VirtualizedContainerService.HintSize="496,321" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="selectQuery" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt" />
-      <Variable x:TypeArguments="x:String" Name="id" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[selectQuery]</OutArgument>
       </Assign.To>
@@ -118,7 +118,7 @@
         <InArgument x:TypeArguments="x:String">[String.Join(",", in_dataToSelect)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_dt]" DisplayName="Ejecutar consulta Select" ExistingDbConnection="[in_connection]" sap:VirtualizedContainerService.HintSize="433.6,89.6" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT &quot; + selectQuery + &quot; FROM Pokemon WHERE pokemon_id=&quot; + id]">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_dt]" DisplayName="Ejecutar consulta Select" ExistingDbConnection="[in_connection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT &quot; + selectQuery + &quot; FROM Pokemon WHERE pokemon_id = &quot; + in_pokemon_id.ToString]">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>

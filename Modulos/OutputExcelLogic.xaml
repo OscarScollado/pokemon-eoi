@@ -14,7 +14,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,7628</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,7908</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>OutputExcelLogic_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -142,7 +142,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,7563" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,7869" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="moves" />
       <Variable x:TypeArguments="x:Int32" Name="moves_idx" />
@@ -159,13 +159,13 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Manejar el nombre del pokemon" sap:VirtualizedContainerService.HintSize="530,937" sap2010:WorkflowViewState.IdRef="Sequence_79">
+    <Sequence DisplayName="Manejar el nombre del pokemon" sap:VirtualizedContainerService.HintSize="530,1017" sap2010:WorkflowViewState.IdRef="Sequence_79">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[in_lista_datos.Contains(&quot;pokemon_name&quot;)]" DisplayName="Si en las cabeceras está el nombre del pokemon" sap:VirtualizedContainerService.HintSize="434,704" sap2010:WorkflowViewState.IdRef="If_13">
+      <If Condition="[in_lista_datos.Contains(&quot;pokemon_name&quot;)]" DisplayName="Si en las cabeceras está el nombre del pokemon" sap:VirtualizedContainerService.HintSize="434,784" sap2010:WorkflowViewState.IdRef="If_13">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -315,6 +315,7 @@
         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_78" />
       </If.Else>
     </If>
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="sprite" DataTable="[in_pokemon_dt]" DisplayName="Quitar columna de datos" sap:VirtualizedContainerService.HintSize="530,186" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3" />
     <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" sap2010:Annotation.AnnotationText="Las columnas que tengan más de una fila se actualizarán a continuación" DataTable="[in_pokemon_dt]" DisplayName="Meter la DT en el Excel" sap:VirtualizedContainerService.HintSize="530,158" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[in_pokemon_name]" WorkbookPath="[in_ruta_excel_output]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">

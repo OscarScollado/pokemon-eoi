@@ -1,11 +1,16 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sdi="clr-namespace:System.Drawing.Imaging;assembly=System.Drawing.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ApiPokemon" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sdi="clr-namespace:System.Drawing.Imaging;assembly=System.Drawing.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_db_connection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="in_nombre_pokemon" Type="InArgument(x:String)" />
+    <x:Property Name="out_db_id" Type="OutArgument(x:Int32)" />
   </x:Members>
+  <this:ApiPokemon.in_nombre_pokemon>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ApiPokemon.in_nombre_pokemon>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,2442</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>985,2564</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ApiPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -132,9 +137,8 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="558,2377" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ApiPokemon" sap:VirtualizedContainerService.HintSize="558,2851" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="charizard" Name="nombre_pokemon" />
       <Variable x:TypeArguments="x:String" Name="res" />
       <Variable x:TypeArguments="njl:JObject" Name="json" />
       <Variable x:TypeArguments="x:Int32" Name="db_id" />
@@ -157,7 +161,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, nombre_pokemon)]" sap:VirtualizedContainerService.HintSize="496,70" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="GET" Result="[res]" TimeoutMS="6000">
+    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[String.Format(&quot;https://pokeapi.co/api/v2/pokemon/{0}&quot;, in_nombre_pokemon)]" sap:VirtualizedContainerService.HintSize="496,70" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="GET" Result="[res]" TimeoutMS="6000">
       <ui:HttpClient.Attachments>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Attachments>
@@ -175,10 +179,10 @@
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
     <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="496,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[json]" JsonString="[res]" />
-    <Sequence DisplayName="Get Id and Name" sap:VirtualizedContainerService.HintSize="496,81" sap2010:WorkflowViewState.IdRef="Sequence_12">
+    <Sequence DisplayName="Get Id and Name" sap:VirtualizedContainerService.HintSize="496,315" sap2010:WorkflowViewState.IdRef="Sequence_12">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -210,7 +214,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:DeserializeJson x:TypeArguments="njl:JArray" DisplayName="Deserializar JSON" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[JArr_abilities]" JsonString="[json(&quot;abilities&quot;).ToString]" />
-      <Assign DisplayName="Asignar " sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign DisplayName="Asignar " sap:VirtualizedContainerService.HintSize="499,81" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[db_abilities]</OutArgument>
         </Assign.To>
@@ -563,25 +567,33 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="Get Sprite" sap:VirtualizedContainerService.HintSize="496,494" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <Sequence DisplayName="Get Sprite" sap:VirtualizedContainerService.HintSize="496,613" sap2010:WorkflowViewState.IdRef="Sequence_20">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:Image" Name="sprite" />
-        <Variable x:TypeArguments="si:MemoryStream" Default="[New System.IO.MemoryStream()]" Name="stream" />
+        <Variable x:TypeArguments="si:MemoryStream" Name="stream" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LoadImage DisplayName="Cargar imagen" FileName="[&quot;resources/images/&quot; + nombre_pokemon + &quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="434,85" sap2010:WorkflowViewState.IdRef="LoadImage_1" Image="[sprite]" />
-      <InvokeMethod DisplayName="Invocar método" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Save">
+      <ui:LoadImage DisplayName="Cargar imagen" FileName="[&quot;resources/images/&quot; + in_nombre_pokemon + &quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="434,85" sap2010:WorkflowViewState.IdRef="LoadImage_1" Image="[sprite]" />
+      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_27">
+        <Assign.To>
+          <OutArgument x:TypeArguments="si:MemoryStream">[stream]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="si:MemoryStream">[New System.IO.MemoryStream()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <InvokeMethod DisplayName="Invocar método" sap:VirtualizedContainerService.HintSize="434,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Save">
         <InvokeMethod.TargetObject>
           <InArgument x:TypeArguments="sd:Image">[sprite]</InArgument>
         </InvokeMethod.TargetObject>
         <InArgument x:TypeArguments="si:MemoryStream">[stream]</InArgument>
         <InArgument x:TypeArguments="sdi:ImageFormat">[System.Drawing.Imaging.ImageFormat.Png]</InArgument>
       </InvokeMethod>
-      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_26">
+      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_26">
         <Assign.To>
           <OutArgument x:TypeArguments="s:Byte[]">[db_sprite]</OutArgument>
         </Assign.To>
@@ -590,7 +602,7 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="DatabaseConnection" sap:VirtualizedContainerService.HintSize="496,675" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <Sequence DisplayName="DatabaseConnection" sap:VirtualizedContainerService.HintSize="496,796" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" Name="secureString" />
         <Variable x:TypeArguments="ui:DatabaseConnection" Name="db_connection" />
@@ -605,7 +617,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:BuildDataTable DataTable="[dataTable]" DisplayName="Crear tabla de datos" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;pokemon_id&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;pokemon_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;abilities&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;types&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;base_hp&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;base_att&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;base_def&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;base_spa&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;base_spd&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;base_speed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;sprite&quot; msdata:Caption=&quot;&quot; type=&quot;xs:base64Binary&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;moves&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;height&quot; msdata:Caption=&quot;&quot; type=&quot;xs:double&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;weight&quot; msdata:Caption=&quot;&quot; type=&quot;xs:double&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_19">
+      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_19">
         <Assign.To>
           <OutArgument x:TypeArguments="s:Object[]">[data_array]</OutArgument>
         </Assign.To>
@@ -615,6 +627,14 @@
       </Assign>
       <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[data_array]" DataTable="[dataTable]" DisplayName="Añadir fila de datos" sap:VirtualizedContainerService.HintSize="434,186" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
       <ui:InsertDataTable AffectedRecords="{x:Null}" ContinueOnError="False" DataTable="[dataTable]" DisplayName="Insertar" ExistingDbConnection="[in_db_connection]" sap:VirtualizedContainerService.HintSize="434,116" sap2010:WorkflowViewState.IdRef="InsertDataTable_2" TableName="Pokemon" />
+      <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_28">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[out_db_id]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[db_id]</InArgument>
+        </Assign.Value>
+      </Assign>
     </Sequence>
   </Sequence>
 </Activity>

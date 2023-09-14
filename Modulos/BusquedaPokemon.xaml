@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,4117</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,4180</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ChatGPT_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -117,7 +117,7 @@
       <AssemblyReference>UiPath.Database</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,4052" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,4115" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="imagenPokemon" />
       <Variable x:TypeArguments="x:String" Name="urlWikidex" />
@@ -143,13 +143,13 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,3407" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,3470" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="588,3190" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="588,3253" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="boolPokemonVacio" />
               <Variable x:TypeArguments="x:Boolean" Name="boolWikidex" />
@@ -159,6 +159,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximizar ventana" sap:VirtualizedContainerService.HintSize="526,25" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
             <ui:UiElementExists DisplayName="Elemento existente wikidex" Exists="[boolWikidex]" sap:VirtualizedContainerService.HintSize="526,107" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7610db33-cb9e-40d5-8010-ee1252e95b1b" InformativeScreenshot="312b262def4cafa3f4d28f2d649f261f" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' innertext='Bienvenido a WikiDex' /&gt;">
