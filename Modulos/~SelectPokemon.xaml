@@ -1,14 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SelectPokemon" this:SelectPokemon.in_pokemon="piplup" this:SelectPokemon.in_lista_datos="[New List(Of String) From {&quot;sprite&quot;}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SelectPokemon" this:SelectPokemon.in_pokemon="piplup" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_pokemon" Type="InArgument(x:String)" />
     <x:Property Name="out_dt" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="out_connection" Type="OutArgument(ui:DatabaseConnection)" />
-    <x:Property Name="in_lista_datos" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="in_lista_datos" Type="InArgument(x:Boolean)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,1627</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1139,1536</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SelectPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -117,14 +117,15 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
       <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
       <AssemblyReference>System.Text.Json</AssemblyReference>
+      <AssemblyReference>GlobalVariablesT1PNoYwrqg</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SelectPokemon" sap:VirtualizedContainerService.HintSize="572,1562" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SelectPokemon" sap:VirtualizedContainerService.HintSize="561,1471" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ss:SecureString" Name="secureString" />
       <Variable x:TypeArguments="x:String" Name="connectionString">
         <Variable.Default>
-          <Literal x:TypeArguments="x:String">Data Source=DESKTOP-SR2QIG0\SQLEXPRESS;Initial Catalog=Pokemon;User ID=sa;Password=1234;Encrypt=False</Literal>
+          <Literal x:TypeArguments="x:String">Data Source=xxx\SQLEXPRESS;Initial Catalog=Pokemon;User ID=sa;Password=1234;Encrypt=False</Literal>
         </Variable.Default>
       </Variable>
       <Variable x:TypeArguments="x:String" Name="selectQuery" />
@@ -134,7 +135,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="ss:SecureString">[secureString]</OutArgument>
       </Assign.To>
@@ -142,13 +143,13 @@
         <InArgument x:TypeArguments="ss:SecureString">[new System.Net.NetworkCredential(String.Empty, connectionString).SecurePassword]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:DatabaseConnect DisplayName="Conectar a base de datos" sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionSecureString="[secureString]" DatabaseConnection="[out_connection]" />
-    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Crear Tabla si no existe" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="510,89" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="&#xA;IF NOT EXISTS (SELECT * &#xA;                 FROM INFORMATION_SCHEMA.TABLES &#xA;                 WHERE TABLE_NAME = 'Pokemon')&#xA;BEGIN&#xA;&#x9;CREATE TABLE [dbo].[Pokemon](&#xA;&#x9;&#x9;[pokemon_id] [int] NOT NULL PRIMARY KEY,&#xA;&#x9;&#x9;[pokemon_name] [varchar](50) NOT NULL,&#xA;&#x9;&#x9;[abilities] [varchar](200) NOT NULL,&#xA;&#x9;&#x9;[types] [varchar](30) NOT NULL,&#xA;&#x9;&#x9;[base_hp] [int] NOT NULL,&#xA;&#x9;&#x9;[base_att] [int] NOT NULL,&#xA;&#x9;&#x9;[base_def] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spa] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spd] [int] NOT NULL,&#xA;&#x9;&#x9;[base_speed] [int] NOT NULL,&#xA;&#x9;&#x9;[sprite] [image],&#xA;&#x9;&#x9;[moves] [text] NOT NULL,&#xA;&#x9;&#x9;[height] [float] NOT NULL,&#xA;&#x9;&#x9;[weight] [float] NOT NULL,&#xA;&#x9;)&#xA;END&#xA;">
+    <ui:DatabaseConnect DisplayName="Conectar a base de datos" sap:VirtualizedContainerService.HintSize="499,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionSecureString="[secureString]" DatabaseConnection="[out_connection]" />
+    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Crear Tabla si no existe" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="499,89" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="&#xA;IF NOT EXISTS (SELECT * &#xA;                 FROM INFORMATION_SCHEMA.TABLES &#xA;                 WHERE TABLE_NAME = 'Pokemon')&#xA;BEGIN&#xA;&#x9;CREATE TABLE [dbo].[Pokemon](&#xA;&#x9;&#x9;[pokemon_id] [int] NOT NULL PRIMARY KEY,&#xA;&#x9;&#x9;[pokemon_name] [varchar](50) NOT NULL,&#xA;&#x9;&#x9;[abilities] [varchar](200) NOT NULL,&#xA;&#x9;&#x9;[types] [varchar](30) NOT NULL,&#xA;&#x9;&#x9;[base_hp] [int] NOT NULL,&#xA;&#x9;&#x9;[base_att] [int] NOT NULL,&#xA;&#x9;&#x9;[base_def] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spa] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spd] [int] NOT NULL,&#xA;&#x9;&#x9;[base_speed] [int] NOT NULL,&#xA;&#x9;&#x9;[sprite] [image],&#xA;&#x9;&#x9;[moves] [text] NOT NULL,&#xA;&#x9;&#x9;[height] [float] NOT NULL,&#xA;&#x9;&#x9;[weight] [float] NOT NULL,&#xA;&#x9;)&#xA;END&#xA;">
       <ui:ExecuteNonQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteNonQuery.Parameters>
     </ui:ExecuteNonQuery>
-    <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="499,82" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[selectQuery]</OutArgument>
       </Assign.To>
@@ -156,50 +157,60 @@
         <InArgument x:TypeArguments="x:String">[String.Join(",", in_lista_datos)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_dt]" DisplayName="Ver si el pokemon existe en la base de datos" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="510,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select &quot; + selectQuery + &quot; from Pokemon where pokemon_name = '&quot; + in_pokemon + &quot;'&quot;]">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_dt]" DisplayName="Ver si el pokemon existe en la base de datos" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="499,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select &quot; + selectQuery + &quot; from Pokemon where pokemon_name = '&quot; + in_pokemon + &quot;'&quot;]">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
-    <If Condition="[selectQuery.Contains(&quot;sprite&quot;)]" DisplayName="Si hay sprite en la selección" sap:VirtualizedContainerService.HintSize="510,849" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[selectQuery.Contains(&quot;sprite&quot;)]" DisplayName="Si hay sprite en la selección" sap:VirtualizedContainerService.HintSize="499,758" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="476,587" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap:VirtualizedContainerService.HintSize="465,496" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
-            <Variable x:TypeArguments="s:Byte[]" Name="spr" />
+            <Variable x:TypeArguments="s:Byte[]" Name="raw_sprite" />
             <Variable x:TypeArguments="si:MemoryStream" Name="stream" />
-            <Variable x:TypeArguments="sd1:Image" Name="img" />
-            <Variable x:TypeArguments="x:String" Name="abstr" />
+            <Variable x:TypeArguments="sd1:Image" Name="proper_image" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
-            <Assign.To>
-              <OutArgument x:TypeArguments="s:Byte[]">[spr]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="s:Byte[]">[CType(out_dt.Rows(0).Item("sprite"), byte())]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
-            <Assign.To>
-              <OutArgument x:TypeArguments="si:MemoryStream">[stream]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="si:MemoryStream">[New System.IO.MemoryStream(spr)]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
-            <Assign.To>
-              <OutArgument x:TypeArguments="sd1:Image">[img]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="sd1:Image">[System.Drawing.Image.FromStream(stream)]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <ui:SaveImage DisplayName="Guardar imagen" FileName="[&quot;resources\images\&quot; + in_pokemon + &quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[img]" />
+          <ui:MultipleAssign sap2010:Annotation.AnnotationText="- raw_sprite: saca el sprite de la DT&#xD;&#xA;- stream: necesito un stream para almacenar el byte() para usar el método FromStream()&#xD;&#xA;- proper_image: la imagen convertida desde el stream" DisplayName="Asignación múltiple" sap:VirtualizedContainerService.HintSize="423,235">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:Byte[]">[raw_sprite]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:Byte[]">[CType(out_dt.Rows(0).Item("sprite"), byte())]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="si:MemoryStream">[stream]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="si:MemoryStream">[New System.IO.MemoryStream(raw_sprite)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="sd1:Image">[proper_image]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="sd1:Image">[System.Drawing.Image.FromStream(stream)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MultipleAssign>
+          <ui:SaveImage DisplayName="Guardar imagen" FileName="[&quot;resources\images\&quot; + in_pokemon + &quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="423,133" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[proper_image]" />
         </Sequence>
       </If.Then>
       <If.Else>
