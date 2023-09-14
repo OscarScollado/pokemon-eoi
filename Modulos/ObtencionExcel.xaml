@@ -3,6 +3,7 @@
     <x:Property Name="in_cuentaCorreo" Type="InArgument(x:String)" />
     <x:Property Name="in_password" Type="InArgument(ss:SecureString)" />
     <x:Property Name="in_rutaExcelGuardado" Type="InArgument(x:String)" />
+    <x:Property Name="out_sender" Type="OutArgument(x:String)" />
   </x:Members>
   <this:ObtencionExcel.in_rutaExcelGuardado>
     <InArgument x:TypeArguments="x:String" />
@@ -10,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,2249</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,2371</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GmailPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -146,7 +147,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="625,2184" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ObtencionExcel" sap:VirtualizedContainerService.HintSize="625,2306" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="listaOutlook" />
       <Variable x:TypeArguments="x:Int32" Name="puerto" />
@@ -206,13 +207,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:GetIMAPMailMessages>
-    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="Para cada correo" sap:VirtualizedContainerService.HintSize="563,362" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[listaOutlook]">
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="Para cada correo" sap:VirtualizedContainerService.HintSize="563,484" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[listaOutlook]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="snm:MailMessage">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="currentMail" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,176" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="476,298" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="archivosAdjuntos" />
             </Sequence.Variables>
@@ -221,13 +222,21 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:SaveMailAttachments Attachments="[archivosAdjuntos]" DisplayName="Guardar archivos adjuntos" ExcludeInlineAttachments="False" Filter="xlsx" FolderPath="[in_rutaExcelGuardado]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMail]" OverwriteExisting="False">
+            <ui:SaveMailAttachments Attachments="[archivosAdjuntos]" DisplayName="Guardar archivos adjuntos" ExcludeInlineAttachments="False" Filter="xlsx" FolderPath="[in_rutaExcelGuardado]" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMail]" OverwriteExisting="False">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:SaveMailAttachments>
+            <Assign DisplayName="Asignar usuario del correo" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_sender]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[currentMail.SenderEmailAddress]</InArgument>
+              </Assign.Value>
+            </Assign>
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>

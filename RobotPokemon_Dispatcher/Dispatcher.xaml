@@ -132,7 +132,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Get the next transaction to be processed." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="659,2743" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Get the next transaction to be processed." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="251,113" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
         <TryCatch DisplayName="Intentar capturar" sap:VirtualizedContainerService.HintSize="613,2324" sap2010:WorkflowViewState.IdRef="TryCatch_13">
           <TryCatch.Try>
@@ -241,9 +241,18 @@
                 </Sequence>
                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ObtencionExcel.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="451,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Modulos\ObtencionExcel.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_cuentaCorreo">[cuentaCorreo]</InArgument>
-                    <InArgument x:TypeArguments="ss:SecureString" x:Key="in_password">[SecuredPassword]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_rutaExcelGuardado">[strExcelPath]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_cuentaCorreo">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="cuentaCorreo" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="ss:SecureString" x:Key="in_password">
+                      <VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="SecuredPassword" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_rutaExcelGuardado">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strExcelPath" />
+                    </InArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_sender">
+                      <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Sender" />
+                    </OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <Assign DisplayName="Asignar strExcelPath a TransactionItem" sap:VirtualizedContainerService.HintSize="451,82" sap2010:WorkflowViewState.IdRef="Assign_37">
@@ -269,7 +278,7 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Log exception message and end process" sap:VirtualizedContainerService.HintSize="496,495" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                <Sequence DisplayName="Log exception message and end process" sap:VirtualizedContainerService.HintSize="496,496" sap2010:WorkflowViewState.IdRef="Sequence_36">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -389,6 +398,7 @@
                                       <ui:AddQueueItem.ItemInformation>
                                         <InArgument x:TypeArguments="x:String" x:Key="Pokemon">[NombrePokemon.ToString]</InArgument>
                                         <InArgument x:TypeArguments="x:String" x:Key="Atributos">[String.join(",", dataToSelect)]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Emisor">[Sender]</InArgument>
                                       </ui:AddQueueItem.ItemInformation>
                                     </ui:AddQueueItem>
                                   </Sequence>
@@ -837,6 +847,7 @@
       <Variable x:TypeArguments="x:String" Name="cuentaCorreo" />
       <Variable x:TypeArguments="ss:SecureString" Name="SecuredPassword" />
       <Variable x:TypeArguments="x:String" Name="strPathConfig" />
+      <Variable x:TypeArguments="x:String" Name="Sender" />
     </StateMachine.Variables>
   </StateMachine>
 </Activity>
