@@ -1,0 +1,8 @@
+﻿{
+	
+
+	
+	"TimeoutSmall":		"3000",
+	"TimeoutMedium":	"40000",
+	"TimeoutLarge":		"120000"
+}
