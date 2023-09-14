@@ -112,15 +112,9 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Modulos\ApiPokemon.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Modulos\ApiPokemon.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_connectionString">
-          <Literal x:TypeArguments="x:String">Data Source=DESKTOP-SR2QIG0\SQLEXPRESS;Initial Catalog=Pokemon;User ID=sa;Password=1234;Encrypt=False</Literal>
-        </InArgument>
-        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="out_db_connection">
-          <VisualBasicReference x:TypeArguments="ui:DatabaseConnection" ExpressionText="dbConnection" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_pokemon_id">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="id" />
-        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_connectionString">Data Source=DESKTOP-SR2QIG0\SQLEXPRESS;Initial Catalog=Pokemon;User ID=sa;Password=1234;Encrypt=False</InArgument>
+        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="out_db_connection">[dbConnection]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_pokemon_id">[id]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
