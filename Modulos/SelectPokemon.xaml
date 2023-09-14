@@ -3,11 +3,12 @@
     <x:Property Name="in_pokemon" Type="InArgument(x:String)" />
     <x:Property Name="out_dt" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="out_connection" Type="OutArgument(ui:DatabaseConnection)" />
+    <x:Property Name="in_lista_datos" Type="InArgument(scg:List(x:String))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,1323</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>834.4,610.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SelectPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -108,61 +109,34 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SelectPokemon" sap:VirtualizedContainerService.HintSize="496,1258" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SelectPokemon" sap:VirtualizedContainerService.HintSize="496,452.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ss:SecureString" Name="secureString" />
       <Variable x:TypeArguments="x:String" Default="Data Source=LAPTOP-VIP89MER\SQLEXPRESS;Initial Catalog=ProyectoRPA;Integrated Security=True;Encrypt=False" Name="connectionString" />
+      <Variable x:TypeArguments="x:String" Name="selectQuery" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Asignar contraseña segura con securePassword" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="ss:SecureString">[secureString]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="ss:SecureString">[New System.Net.NetworkCredential(String.Empty, connectionString).SecurePassword]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:DatabaseConnect DisplayName="Conectar a base de datos" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionSecureString="[secureString]" DatabaseConnection="[out_connection]" />
-    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Crear Tabla si no existe" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="&#xA;IF NOT EXISTS (SELECT * &#xA;                 FROM INFORMATION_SCHEMA.TABLES &#xA;                 WHERE TABLE_NAME = 'Pokemon')&#xA;BEGIN&#xA;&#x9;CREATE TABLE [dbo].[Pokemon](&#xA;&#x9;&#x9;[pokemon_id] [int] NOT NULL PRIMARY KEY,&#xA;&#x9;&#x9;[pokemon_name] [varchar](50) NOT NULL,&#xA;&#x9;&#x9;[abilities] [varchar](200) NOT NULL,&#xA;&#x9;&#x9;[types] [varchar](30) NOT NULL,&#xA;&#x9;&#x9;[base_hp] [int] NOT NULL,&#xA;&#x9;&#x9;[base_att] [int] NOT NULL,&#xA;&#x9;&#x9;[base_def] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spa] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spd] [int] NOT NULL,&#xA;&#x9;&#x9;[base_speed] [int] NOT NULL,&#xA;&#x9;&#x9;[sprite] [image],&#xA;&#x9;&#x9;[moves] [text] NOT NULL,&#xA;&#x9;&#x9;[height] [float] NOT NULL,&#xA;&#x9;&#x9;[weight] [float] NOT NULL,&#xA;&#x9;)&#xA;END&#xA;">
+    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Crear Tabla si no existe" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="433.6,89.6" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="&#xA;IF NOT EXISTS (SELECT * &#xA;                 FROM INFORMATION_SCHEMA.TABLES &#xA;                 WHERE TABLE_NAME = 'Pokemon')&#xA;BEGIN&#xA;&#x9;CREATE TABLE [dbo].[Pokemon](&#xA;&#x9;&#x9;[pokemon_id] [int] NOT NULL PRIMARY KEY,&#xA;&#x9;&#x9;[pokemon_name] [varchar](50) NOT NULL,&#xA;&#x9;&#x9;[abilities] [varchar](200) NOT NULL,&#xA;&#x9;&#x9;[types] [varchar](30) NOT NULL,&#xA;&#x9;&#x9;[base_hp] [int] NOT NULL,&#xA;&#x9;&#x9;[base_att] [int] NOT NULL,&#xA;&#x9;&#x9;[base_def] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spa] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spd] [int] NOT NULL,&#xA;&#x9;&#x9;[base_speed] [int] NOT NULL,&#xA;&#x9;&#x9;[sprite] [image],&#xA;&#x9;&#x9;[moves] [text] NOT NULL,&#xA;&#x9;&#x9;[height] [float] NOT NULL,&#xA;&#x9;&#x9;[weight] [float] NOT NULL,&#xA;&#x9;)&#xA;END&#xA;">
       <ui:ExecuteNonQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteNonQuery.Parameters>
     </ui:ExecuteNonQuery>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_dt]" DisplayName="Ver si el pokemon existe en la base de datos" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select * from Pokemon where pokemon_name = '&quot; + in_pokemon + &quot;'&quot;]">
+    <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[selectQuery]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Join(",", in_lista_datos)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_dt]" DisplayName="Ver si el pokemon existe en la base de datos" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="433.6,89.6" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;Select&quot; + selectQuery + &quot;from Pokemon where pokemon_name = '&quot; + in_pokemon + &quot;'&quot;]">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
-    <If Condition="[out_dt.RowCount &gt; 0]" DisplayName="Si" sap:VirtualizedContainerService.HintSize="434,538" sap2010:WorkflowViewState.IdRef="If_1">
-      <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <WriteLine DisplayName="Escribir línea" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Todo correcto" />
-        </Sequence>
-      </If.Then>
-      <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_3">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <WriteLine DisplayName="Escribir línea" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="No existe este pokemon" />
-        </Sequence>
-      </If.Else>
-    </If>
-    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Ejecutar comando" ExistingDbConnection="[out_connection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="&#xA;IF NOT EXISTS (SELECT * &#xA;                 FROM INFORMATION_SCHEMA.TABLES &#xA;                 WHERE TABLE_NAME = 'Pokemon')&#xA;BEGIN&#xA;&#x9;CREATE TABLE [dbo].[Pokemon](&#xA;&#x9;&#x9;[pokemon_id] [int] NOT NULL PRIMARY KEY,&#xA;&#x9;&#x9;[pokemon_name] [varchar](50) NOT NULL,&#xA;&#x9;&#x9;[abilities] [varchar](200) NOT NULL,&#xA;&#x9;&#x9;[types] [varchar](30) NOT NULL,&#xA;&#x9;&#x9;[base_hp] [int] NOT NULL,&#xA;&#x9;&#x9;[base_att] [int] NOT NULL,&#xA;&#x9;&#x9;[base_def] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spa] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spd] [int] NOT NULL,&#xA;&#x9;&#x9;[base_speed] [int] NOT NULL,&#xA;&#x9;&#x9;[sprite] [image],&#xA;&#x9;&#x9;[moves] [text] NOT NULL,&#xA;&#x9;&#x9;[height] [float] NOT NULL,&#xA;&#x9;&#x9;[weight] [float] NOT NULL,&#xA;&#x9;)&#xA;END&#xA;">
-      <ui:ExecuteNonQuery.Parameters>
-        <scg:Dictionary x:TypeArguments="x:String, Argument" />
-      </ui:ExecuteNonQuery.Parameters>
-    </ui:ExecuteNonQuery>
   </Sequence>
 </Activity>
