@@ -9,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1369,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,862</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EnvioExcel_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -93,7 +93,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="EnvioExcel" sap:VirtualizedContainerService.HintSize="485,435" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="EnvioExcel" sap:VirtualizedContainerService.HintSize="485,797" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="asunto" />
       <Variable x:TypeArguments="x:String" Name="cuerpo" />
@@ -103,6 +103,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Registrar mensaje envío" sap:VirtualizedContainerService.HintSize="423,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Empezamos el envío del excel&quot;]" />
     <ui:MultipleAssign DisplayName="Asignar asunto y cuerpo" sap:VirtualizedContainerService.HintSize="423,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
@@ -128,12 +129,8 @@
     <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[cuerpo]" DisplayName="Enviar mensaje de correo SMTP con el excel completo" Email="[in_cuentaCorreo]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="423,152" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Port="587" SecureConnection="Auto" SecurePassword="[in_password]" Server="smtp-mail.outlook.com" Subject="[asunto]" To="[in_correoEnvio]">
       <ui:SendMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-          <InArgument x:TypeArguments="x:String">
-            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ruta" />
-          </InArgument>
-          <InArgument x:TypeArguments="x:String">
-            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_rutaImagen" />
-          </InArgument>
+          <InArgument x:TypeArguments="x:String">[in_ruta]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_rutaImagen]</InArgument>
         </scg:List>
       </ui:SendMail.Files>
       <sap:WorkflowViewStateService.ViewState>
@@ -142,5 +139,6 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:SendMail>
+    <ui:LogMessage DisplayName="Registrar mensaje envío final" sap:VirtualizedContainerService.HintSize="423,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos el envío del excel&quot;]" />
   </Sequence>
 </Activity>

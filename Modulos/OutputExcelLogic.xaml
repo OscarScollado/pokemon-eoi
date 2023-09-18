@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,8213</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,9056</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>OutputExcelLogic_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -139,7 +139,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,8148" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,8991" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="moves" />
       <Variable x:TypeArguments="x:Int32" Name="moves_idx" />
@@ -156,6 +156,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Registrar mensaje Inicio" sap:VirtualizedContainerService.HintSize="530,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Iniciamos el módulo de OutputExcel&quot;]" />
     <Sequence DisplayName="Quitar la columna &quot;sprite&quot;" sap:VirtualizedContainerService.HintSize="530,545" sap2010:WorkflowViewState.IdRef="Sequence_80">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -172,18 +173,16 @@
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <InArgument x:TypeArguments="x:String">
-          <Literal x:TypeArguments="x:String">sprite</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="x:String">sprite</InArgument>
       </InvokeMethod>
     </Sequence>
-    <Sequence DisplayName="Manejar el nombre del pokemon" sap:VirtualizedContainerService.HintSize="530,937" sap2010:WorkflowViewState.IdRef="Sequence_79">
+    <Sequence DisplayName="Manejar el nombre del pokemon" sap:VirtualizedContainerService.HintSize="530,1017" sap2010:WorkflowViewState.IdRef="Sequence_79">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[in_lista_datos.Contains(&quot;pokemon_name&quot;)]" DisplayName="Si en las cabeceras está el nombre del pokemon" sap:VirtualizedContainerService.HintSize="434,704" sap2010:WorkflowViewState.IdRef="If_13">
+      <If Condition="[in_lista_datos.Contains(&quot;pokemon_name&quot;)]" DisplayName="Si en las cabeceras está el nombre del pokemon" sap:VirtualizedContainerService.HintSize="434,784" sap2010:WorkflowViewState.IdRef="If_13">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -305,7 +304,7 @@
         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_76" />
       </If.Else>
     </If>
-    <If Condition="[in_lista_datos.Contains(&quot;weight&quot;)]" DisplayName="Si se ha pedido &quot;height&quot;, cambiar su nombre" sap:VirtualizedContainerService.HintSize="530,352" sap2010:WorkflowViewState.IdRef="If_15">
+    <If Condition="[in_lista_datos.Contains(&quot;weight&quot;)]" DisplayName="Si se ha pedido &quot;height&quot;, cambiar su nombre" sap:VirtualizedContainerService.HintSize="530,351" sap2010:WorkflowViewState.IdRef="If_15">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -313,13 +312,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_77">
+        <Sequence sap:VirtualizedContainerService.HintSize="476,169" sap2010:WorkflowViewState.IdRef="Sequence_77">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_55">
+          <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_55">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[in_pokemon_dt.Columns("weight").ColumnName]</OutArgument>
             </Assign.To>
@@ -333,6 +332,7 @@
         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_78" />
       </If.Else>
     </If>
+    <ui:LogMessage DisplayName="Registrar mensaje Inicio excel" sap:VirtualizedContainerService.HintSize="530,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Creando el excel&quot;]" />
     <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" sap2010:Annotation.AnnotationText="Las columnas que tengan más de una fila se actualizarán a continuación" DataTable="[in_pokemon_dt]" DisplayName="Meter la DT en el Excel" sap:VirtualizedContainerService.HintSize="530,158" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[in_pokemon_name]" WorkbookPath="[in_ruta_excel_output]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -340,6 +340,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteRange>
+    <ui:LogMessage DisplayName="Registrar mensaje Final excel" sap:VirtualizedContainerService.HintSize="530,141" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Excel creado&quot;]" />
     <If Condition="[in_lista_datos.Contains(&quot;abilities&quot;)]" DisplayName="Si se ha pedido &quot;abilities&quot;" sap:VirtualizedContainerService.HintSize="530,1550" sap2010:WorkflowViewState.IdRef="If_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -564,14 +565,14 @@
         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_68" />
       </If.Else>
     </If>
-    <ueab:SequenceX DisplayName="Ámbito del proceso de Excel único" sap:VirtualizedContainerService.HintSize="530,640" sap2010:WorkflowViewState.IdRef="SequenceX_3">
+    <ueab:SequenceX DisplayName="Ámbito del proceso de Excel único" sap:VirtualizedContainerService.HintSize="530,680" sap2010:WorkflowViewState.IdRef="SequenceX_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" sap2010:Annotation.AnnotationText="Esta era la única manera para ajustar el ancho de las columnas del Excel fácilmente" CreateNewFile="False" DisplayName="Utilice el archivo de Excel" sap:VirtualizedContainerService.HintSize="468,529" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_3" ResizeWindow="None" TemplatePath="plantilla.xlsx" WorkbookPath="[in_ruta_excel_output]">
+      <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" sap2010:Annotation.AnnotationText="Esta era la única manera para ajustar el ancho de las columnas del Excel fácilmente" CreateNewFile="False" DisplayName="Utilice el archivo de Excel" sap:VirtualizedContainerService.HintSize="468,569" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_3" ResizeWindow="None" TemplatePath="plantilla.xlsx" WorkbookPath="[in_ruta_excel_output]">
         <ueab:ExcelApplicationCard.Body>
           <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
             <ActivityAction.Argument>
@@ -593,5 +594,6 @@
         </sap:WorkflowViewStateService.ViewState>
       </ueab:ExcelApplicationCard>
     </ueab:SequenceX>
+    <ui:LogMessage DisplayName="Registrar mensaje Final" sap:VirtualizedContainerService.HintSize="530,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos el módulo de OutputExcel&quot;]" />
   </Sequence>
 </Activity>
