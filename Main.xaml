@@ -131,9 +131,9 @@
     </sap:WorkflowViewStateService.ViewState>
     <State x:Name="__ReferenceID6" sap2010:Annotation.AnnotationText="Get the next transaction to be processed." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="251,113" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
-        <TryCatch DisplayName="Intentar capturar" sap:VirtualizedContainerService.HintSize="536,606" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+        <TryCatch DisplayName="Intentar capturar" sap:VirtualizedContainerService.HintSize="610,1789" sap2010:WorkflowViewState.IdRef="TryCatch_13">
           <TryCatch.Try>
-            <Sequence sap2010:Annotation.AnnotationText="Retrieve a new transaction data to be processed.&#xA;The TransactionNumber variable holds the current transaction number and incrementing this variable makes the framework retrieve the next transaction. If the framework is retrying a failed transaction, this variable is not incremented until the maximum number of retry attempts is reached." DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="572,1653" sap2010:WorkflowViewState.IdRef="Sequence_32">
+            <Sequence sap2010:Annotation.AnnotationText="Retrieve a new transaction data to be processed.&#xA;The TransactionNumber variable holds the current transaction number and incrementing this variable makes the framework retrieve the next transaction. If the framework is retrying a failed transaction, this variable is not incremented until the maximum number of retry attempts is reached." DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="572,1561" sap2010:WorkflowViewState.IdRef="Sequence_32">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Boolean" Name="ShouldStop" />
               </Sequence.Variables>
@@ -145,7 +145,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:ShouldStop DisplayName="Check Stop Signal" sap:VirtualizedContainerService.HintSize="510,90" sap2010:WorkflowViewState.IdRef="ShouldStop_3" Result="[ShouldStop]" />
-              <If Condition="[ShouldStop]" DisplayName="Should Stop or Get Next" sap:VirtualizedContainerService.HintSize="510,1340" sap2010:WorkflowViewState.IdRef="If_15">
+              <If Condition="[ShouldStop]" DisplayName="Should Stop or Get Next" sap:VirtualizedContainerService.HintSize="510,1248" sap2010:WorkflowViewState.IdRef="If_15">
                 <If.Then>
                   <Sequence DisplayName="Orchestrator stop requested" sap:VirtualizedContainerService.HintSize="476,351" sap2010:WorkflowViewState.IdRef="Sequence_34">
                     <sap:WorkflowViewStateService.ViewState>
@@ -166,7 +166,7 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Secuencia" sap:VirtualizedContainerService.HintSize="476,807" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                  <Sequence DisplayName="Secuencia" sap:VirtualizedContainerService.HintSize="476,715" sap2010:WorkflowViewState.IdRef="Sequence_33">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="ui:QueueItem" Name="ItemCola" />
                     </Sequence.Variables>
@@ -177,31 +177,6 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:LogMessage DisplayName="Registrar mensaje get Transaction item" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_38" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Obtenemos el transaction item&quot;]" />
                     <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Obtener elemento de transacción" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetQueueItem_1" QueueType="ObtencionCorreo" TransactionItem="[ItemCola]" />
-                    <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="434,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                      <ui:CommentOut.Body>
-                        <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_41">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Assign DisplayName="Asignar el usuario emisor al sender" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_35">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[Sender]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[ItemCola.SpecificContent("Emisor").ToString]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                        </Sequence>
-                      </ui:CommentOut.Body>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CommentOut>
                     <Assign DisplayName="Asignar TransactionItem a nuesotr item de cola" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_33">
                       <Assign.To>
                         <OutArgument x:TypeArguments="ui:QueueItem">[TransactionItem]</OutArgument>
@@ -217,10 +192,10 @@
             </Sequence>
           </TryCatch.Try>
           <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="502,443" sap2010:WorkflowViewState.IdRef="Catch`1_14">
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="576,21" sap2010:WorkflowViewState.IdRef="Catch`1_14">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -271,9 +246,9 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Transition.To>
-            <State x:Name="__ReferenceID8" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="596,3024" sap2010:WorkflowViewState.IdRef="State_3">
+            <State x:Name="__ReferenceID8" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="596,2484" sap2010:WorkflowViewState.IdRef="State_3">
               <State.Entry>
-                <TryCatch DisplayName="Try to process transaction" sap:VirtualizedContainerService.HintSize="550,2552" sap2010:WorkflowViewState.IdRef="TryCatch_9">
+                <TryCatch DisplayName="Try to process transaction" sap:VirtualizedContainerService.HintSize="550,2012" sap2010:WorkflowViewState.IdRef="TryCatch_9">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -281,7 +256,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence DisplayName="Process the current TransactionItem" sap:VirtualizedContainerService.HintSize="512,2302" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                    <Sequence DisplayName="Process the current TransactionItem" sap:VirtualizedContainerService.HintSize="512,1762" sap2010:WorkflowViewState.IdRef="Sequence_28">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="NombrePokemon" />
                         <Variable x:TypeArguments="x:String" Name="DatosPokemon" />
@@ -296,9 +271,9 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:LogMessage DisplayName="Registrar mensaje extracción" sap:VirtualizedContainerService.HintSize="450,141" sap2010:WorkflowViewState.IdRef="LogMessage_40" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Empezamos la extracción de datos&quot;]" />
-                      <ui:MultipleAssign DisplayName="Inicialización de variables" sap:VirtualizedContainerService.HintSize="450,318" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                      <ui:MultipleAssign DisplayName="Inicialización de variables" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                         <ui:MultipleAssign.AssignOperations>
-                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
                             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
                               <ui:AssignOperation.To>
                                 <OutArgument x:TypeArguments="x:String">[NombrePokemon]</OutArgument>
@@ -367,7 +342,7 @@
                         </ui:MultipleAssign.AssignOperations>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
@@ -557,25 +532,6 @@
                       <ui:LogMessage DisplayName="Registrar mensaje desconexión" sap:VirtualizedContainerService.HintSize="450,141" sap2010:WorkflowViewState.IdRef="LogMessage_41" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Nos desconectamos de las BD&quot;]" />
                       <ui:DatabaseDisconnect DatabaseConnection="[BDConexion]" DisplayName="Desconectarse de la base de datos" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
                       <ui:LogMessage DisplayName="Registrar mensaje desconexión final" sap:VirtualizedContainerService.HintSize="450,141" sap2010:WorkflowViewState.IdRef="LogMessage_43" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Desconexión finalizada&quot;]" />
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="EnvioExcel.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" UnSafe="False" WorkflowFileName="Modulos\EnvioExcel.xaml">
-                        <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_ruta">[ruta_excel_output]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_correoEnvio">[Sender]</InArgument>
-                          <InArgument x:TypeArguments="ss:SecureString" x:Key="in_password">[SecuredPassword]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_cuentaCorreo">[cuentaCorreo]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_rutaImagen">[pathExcel_sprite]</InArgument>
-                        </ui:InvokeWorkflowFile.Arguments>
-                      </ui:InvokeWorkflowFile>
-                      <Sequence DisplayName="Borrar todo" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_46">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:DeleteFileX DisplayName="Eliminar archivo excel" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_3" Path="[ruta_excel_output]" />
-                        <ui:DeleteFileX DisplayName="Eliminar archivo imagen" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_4" Path="[pathExcel_sprite]" />
-                      </Sequence>
                       <TryCatch DisplayName="Try Catch Set Transaction Status (Success)" sap:VirtualizedContainerService.HintSize="450,341" sap2010:WorkflowViewState.IdRef="TryCatch_10">
                         <TryCatch.Try>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetTransactionStatus (Success)" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="Framework\SetTransactionStatus.xaml">
@@ -976,7 +932,7 @@
                           <Transition.To>
                             <State x:Name="__ReferenceID7" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="144,120" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
-                                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="648,1349" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="550,956" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -984,7 +940,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <TryCatch.Try>
-                                    <Sequence DisplayName="Secuencia" sap:VirtualizedContainerService.HintSize="610,1121" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                    <Sequence DisplayName="EnvíoExcel" sap:VirtualizedContainerService.HintSize="512,728" sap2010:WorkflowViewState.IdRef="Sequence_38">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="x:String" Name="eliminar_sprite" />
                                       </Sequence.Variables>
@@ -993,107 +949,36 @@
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:MultipleAssign DisplayName="Inicialización de variables" sap:VirtualizedContainerService.HintSize="548,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-                                        <ui:MultipleAssign.AssignOperations>
-                                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
-                                              <ui:AssignOperation.To>
-                                                <OutArgument x:TypeArguments="x:String">[ruta_output]</OutArgument>
-                                              </ui:AssignOperation.To>
-                                              <ui:AssignOperation.Value>
-                                                <InArgument x:TypeArguments="x:String">.\resources\input_pokemon_20230916_112302.xlsx</InArgument>
-                                              </ui:AssignOperation.Value>
-                                            </ui:AssignOperation>
-                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
-                                              <ui:AssignOperation.To>
-                                                <OutArgument x:TypeArguments="x:String">[eliminar_sprite]</OutArgument>
-                                              </ui:AssignOperation.To>
-                                              <ui:AssignOperation.Value>
-                                                <InArgument x:TypeArguments="x:String">["resources\images\totodile.png"]</InArgument>
-                                              </ui:AssignOperation.Value>
-                                            </ui:AssignOperation>
-                                          </scg:List>
-                                        </ui:MultipleAssign.AssignOperations>
-                                      </ui:MultipleAssign>
-                                      <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="548,52" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-                                        <ui:CommentOut.Body>
-                                          <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="512,365" sap2010:WorkflowViewState.IdRef="Sequence_44">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <Sequence DisplayName="Credenciales Jonathan" sap:VirtualizedContainerService.HintSize="450,254" sap2010:WorkflowViewState.IdRef="Sequence_39">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="passwordJonathan" CacheStrategy="None" DisplayName="Obtener credencial" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="388,143" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[SecuredPassword]" Username="[cuentaCorreo]" />
-                                            </Sequence>
-                                          </Sequence>
-                                        </ui:CommentOut.Body>
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                      </ui:CommentOut>
-                                      <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="548,52" sap2010:WorkflowViewState.IdRef="CommentOut_4">
-                                        <ui:CommentOut.Body>
-                                          <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="450,224" sap2010:WorkflowViewState.IdRef="Sequence_45">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="EnvioExcel.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_35" UnSafe="False" WorkflowFileName="Modulos\EnvioExcel.xaml">
-                                              <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="in_ruta">[ruta_output]</InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="in_correoEnvio">[Sender]</InArgument>
-                                                <InArgument x:TypeArguments="ss:SecureString" x:Key="in_password">[SecuredPassword]</InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="in_cuentaCorreo">[cuentaCorreo]</InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="in_rutaImagen">[eliminar_sprite]</InArgument>
-                                              </ui:InvokeWorkflowFile.Arguments>
-                                            </ui:InvokeWorkflowFile>
-                                          </Sequence>
-                                        </ui:CommentOut.Body>
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                      </ui:CommentOut>
-                                      <ui:CommentOut DisplayName="Comentar" sap:VirtualizedContainerService.HintSize="548,501" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                                        <ui:CommentOut.Body>
-                                          <Sequence DisplayName="Actividades ignoradas" sap:VirtualizedContainerService.HintSize="512,422" sap2010:WorkflowViewState.IdRef="Sequence_42">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <Sequence DisplayName="Borrar todo" sap:VirtualizedContainerService.HintSize="450,311" sap2010:WorkflowViewState.IdRef="Sequence_40">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <ui:DeleteFileX DisplayName="Eliminar archivo excel" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="resources\input_pokemon.xlsx" />
-                                              <ui:DeleteFileX DisplayName="Eliminar archivo imagen" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[eliminar_sprite]" />
-                                            </Sequence>
-                                          </Sequence>
-                                        </ui:CommentOut.Body>
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="EnvioExcel.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_37" UnSafe="False" WorkflowFileName="Modulos\EnvioExcel.xaml">
+                                        <ui:InvokeWorkflowFile.Arguments>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_ruta">
+                                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="ruta_excel_output" />
+                                          </InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_correoEnvio">
+                                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Sender" />
+                                          </InArgument>
+                                          <InArgument x:TypeArguments="ss:SecureString" x:Key="in_password">
+                                            <VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="SecuredPassword" />
+                                          </InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_cuentaCorreo">
+                                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="cuentaCorreo" />
+                                          </InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_rutaImagenes">
+                                            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="allSprite" />
+                                          </InArgument>
+                                        </ui:InvokeWorkflowFile.Arguments>
+                                      </ui:InvokeWorkflowFile>
+                                      <Sequence DisplayName="Borrar todo" sap:VirtualizedContainerService.HintSize="450,311" sap2010:WorkflowViewState.IdRef="Sequence_47">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                      </ui:CommentOut>
-                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CloseAllApplications workflow" sap:VirtualizedContainerService.HintSize="548,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
+                                        <ui:DeleteFileX DisplayName="Eliminar archivo excel" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_5" Path="[ruta_excel_output]" />
+                                        <ui:DeleteFileX DisplayName="Eliminar archivo imagen" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_6" Path="[pathExcel_sprite]" />
+                                      </Sequence>
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CloseAllApplications workflow" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
                                           <scg:Dictionary x:TypeArguments="x:String, Argument" />
                                         </ui:InvokeWorkflowFile.Arguments>
@@ -1101,7 +986,7 @@
                                     </Sequence>
                                   </TryCatch.Try>
                                   <TryCatch.Catches>
-                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="614,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="516,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1193,7 +1078,6 @@
                 </Transition>
               </State.Transitions>
               <State.Variables>
-                <Variable x:TypeArguments="x:String" Name="ruta_excel_output" />
                 <Variable x:TypeArguments="x:Int32" Name="pokemon_id" />
               </State.Variables>
             </State>
@@ -1243,6 +1127,8 @@
       <Variable x:TypeArguments="x:String" Name="pathExcel_sprite" />
       <Variable x:TypeArguments="ss:SecureString" Name="SecuredPassword" />
       <Variable x:TypeArguments="x:String" Name="cuentaCorreo" />
+      <Variable x:TypeArguments="x:String" Name="ruta_excel_output" />
+      <Variable x:TypeArguments="x:String" Name="allSprite" />
     </StateMachine.Variables>
   </StateMachine>
 </Activity>
