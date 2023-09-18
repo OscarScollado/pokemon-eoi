@@ -1,4 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="834.4,2732" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ExcelPokemon" Type="InArgument(x:String)" />
+    <x:Property Name="out_dataToSelect" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="out_pokemonToRead" Type="OutArgument(scg:List(x:String))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>834.4,2913.6</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -94,7 +104,7 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="680,2667.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="680,2848.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Default="2" Name="numeroFilas" />
       <Variable x:TypeArguments="x:String" Name="valorFila">
@@ -102,9 +112,7 @@
           <Literal x:TypeArguments="x:String" Value="" />
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="scg:List(x:String)" Name="pokemonToRead" />
       <Variable x:TypeArguments="sd:DataTable" Name="DataToExtract" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="dataToSelect" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -116,7 +124,7 @@
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="scg:List(x:String)">[pokemonToRead]</OutArgument>
+              <OutArgument x:TypeArguments="scg:List(x:String)">[out_pokemonToRead]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
               <InArgument x:TypeArguments="scg:List(x:String)">[new List(Of String)]</InArgument>
@@ -124,7 +132,7 @@
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="scg:List(x:String)">[DataToSelect]</OutArgument>
+              <OutArgument x:TypeArguments="scg:List(x:String)">[out_dataToSelect]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
               <InArgument x:TypeArguments="scg:List(x:String)">[new List(Of String)]</InArgument>
@@ -143,7 +151,7 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ReadCell Cell="[&quot;A&quot;+numeroFilas.ToString]" DisplayName="Leer libro de celda" sap:VirtualizedContainerService.HintSize="510.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_1" SheetName="Hoja1" WorkbookPath="resources/pokemon.xlsx">
+        <ui:ReadCell Cell="[&quot;A&quot;+numeroFilas.ToString]" DisplayName="Leer libro de celda" sap:VirtualizedContainerService.HintSize="510.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_1" SheetName="Hoja1" WorkbookPath="[in_ExcelPokemon + &quot;\input_pokemon.xlsx&quot;]">
           <ui:ReadCell.Result>
             <OutArgument x:TypeArguments="x:String">[valorFila]</OutArgument>
           </ui:ReadCell.Result>
@@ -156,7 +164,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[pokemonToRead]" DisplayName="Agregar elementos a la colección" sap:VirtualizedContainerService.HintSize="334.4,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_1">
+              <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[out_pokemonToRead]" DisplayName="Agregar elementos a la colección" sap:VirtualizedContainerService.HintSize="334.4,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_1">
                 <uasc:AppendItemToCollection.Items>
                   <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                     <InArgument x:TypeArguments="x:String">[valorFila]</InArgument>
@@ -226,7 +234,7 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ReadRange AddHeaders="False" DataTable="[DataToExtract]" DisplayName="Leer libro de intervalo" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="[&quot;B&quot;+numeroFilas.ToString+&quot;:&quot;+&quot;C&quot;+numeroFilas.ToString]" SheetName="Hoja1" WorkbookPath="resources\pokemon.xlsx" />
+        <ui:ReadRange AddHeaders="False" DataTable="[DataToExtract]" DisplayName="Leer libro de intervalo" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="[&quot;B&quot;+numeroFilas.ToString+&quot;:&quot;+&quot;C&quot;+numeroFilas.ToString]" SheetName="Hoja1" WorkbookPath="[in_ExcelPokemon + &quot;\input_pokemon.xlsx&quot;]" />
         <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_9">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[valorFila]</OutArgument>
@@ -243,7 +251,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[dataToSelect]" DisplayName="Agregar elementos a la colección" sap:VirtualizedContainerService.HintSize="334.4,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_3">
+              <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[out_dataToSelect]" DisplayName="Agregar elementos a la colección" sap:VirtualizedContainerService.HintSize="334.4,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_3">
                 <uasc:AppendItemToCollection.Items>
                   <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                     <InArgument x:TypeArguments="x:String">[DataToExtract.Rows(0)(0).ToString]</InArgument>
@@ -266,5 +274,12 @@
         </Assign>
       </Sequence>
     </DoWhile>
+    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[out_dataToSelect]" DisplayName="Agregar elementos a la colección" sap:VirtualizedContainerService.HintSize="617.6,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_4">
+      <uasc:AppendItemToCollection.Items>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+          <InArgument x:TypeArguments="x:String">sprite</InArgument>
+        </scg:List>
+      </uasc:AppendItemToCollection.Items>
+    </uasc:AppendItemToCollection>
   </Sequence>
 </Activity>

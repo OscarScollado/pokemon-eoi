@@ -2,11 +2,13 @@
   <x:Members>
     <x:Property Name="in_dataToSelect" Type="InArgument(scg:List(x:String))" />
     <x:Property Name="out_dt" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_connection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="in_pokemon_id" Type="InArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,678</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,749</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SelectfromDatabase_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -98,31 +100,17 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SelectfromDatabase" sap:VirtualizedContainerService.HintSize="496,597" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SelectfromDatabase" sap:VirtualizedContainerService.HintSize="496,684" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="selectQuery" />
-      <Variable x:TypeArguments="ui:DatabaseConnection" Name="dbConnection" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt" />
-      <Variable x:TypeArguments="x:String" Name="id" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Modulos\ApiPokemon.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Modulos\ApiPokemon.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_connectionString">
-          <Literal x:TypeArguments="x:String">Data Source=DESKTOP-SR2QIG0\SQLEXPRESS;Initial Catalog=Pokemon;User ID=sa;Password=1234;Encrypt=False</Literal>
-        </InArgument>
-        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="out_db_connection">
-          <VisualBasicReference x:TypeArguments="ui:DatabaseConnection" ExpressionText="dbConnection" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_pokemon_id">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="id" />
-        </OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
+    <ui:LogMessage DisplayName="Registrar mensaje Inicio" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Iniciamos el módulo de SelectFromDatabase&quot;]" />
     <Assign DisplayName="Asignar datos de pokemon" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[selectQuery]</OutArgument>
@@ -131,18 +119,11 @@
         <InArgument x:TypeArguments="x:String">[String.Join(",", in_dataToSelect)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt]" DisplayName="Ejecutar consulta Select" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT &quot; + selectQuery + &quot; FROM Pokemon WHERE pokemon_id=&quot; + id]">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_dt]" DisplayName="Ejecutar consulta Select" ExistingDbConnection="[in_connection]" sap:VirtualizedContainerService.HintSize="434,89" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT &quot; + selectQuery + &quot; FROM Pokemon WHERE pokemon_id = &quot; + in_pokemon_id.ToString]">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
-    <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
-      <Assign.To>
-        <OutArgument x:TypeArguments="sd:DataTable">[out_dt]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="sd:DataTable">[dt]</InArgument>
-      </Assign.Value>
-    </Assign>
+    <ui:LogMessage DisplayName="Registrar mensaje Final" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos el módulo de SelectFromDatabase&quot;]" />
   </Sequence>
 </Activity>

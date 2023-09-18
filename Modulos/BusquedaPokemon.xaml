@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="BusquedaPokemon" this:BusquedaPokemon.in_NombrePokemon="charizard" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="BusquedaPokemon" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_NombrePokemon" Type="InArgument(x:String)" />
     <x:Property Name="in_pathImagenes" Type="InArgument(x:String)" />
@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,4392</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,4180</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ChatGPT_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -117,7 +117,7 @@
       <AssemblyReference>UiPath.Database</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,4327" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Este módulo hará la búsqueda de diferentes datos del pokemon buscado" DisplayName="BusquedaPokemon" sap:VirtualizedContainerService.HintSize="688,4115" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="imagenPokemon" />
       <Variable x:TypeArguments="x:String" Name="urlWikidex" />
@@ -143,13 +143,13 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,3529" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Utilizar Navegador Chrome: WikiDex, la enciclopedia Pokémon" sap:VirtualizedContainerService.HintSize="626,3470" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a83dcbca-35b9-4bdb-886a-654e59a1459d" Timeout="5" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="592,3312" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="busqueda pokemon " sap:VirtualizedContainerService.HintSize="588,3253" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="boolPokemonVacio" />
               <Variable x:TypeArguments="x:Boolean" Name="boolWikidex" />
@@ -159,7 +159,8 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:UiElementExists DisplayName="Elemento existente wikidex" Exists="[boolWikidex]" sap:VirtualizedContainerService.HintSize="530,107" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
+            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximizar ventana" sap:VirtualizedContainerService.HintSize="526,25" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+            <ui:UiElementExists DisplayName="Elemento existente wikidex" Exists="[boolWikidex]" sap:VirtualizedContainerService.HintSize="526,107" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7610db33-cb9e-40d5-8010-ee1252e95b1b" InformativeScreenshot="312b262def4cafa3f4d28f2d649f261f" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' innertext='Bienvenido a WikiDex' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -171,7 +172,7 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[not boolWikidex]" DisplayName="Si la página wikidex no existe" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[not boolWikidex]" DisplayName="Si la página wikidex no existe" sap:VirtualizedContainerService.HintSize="526,654" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="492,472" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
@@ -194,7 +195,7 @@
                 <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8" />
               </If.Else>
             </If>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Escribir en buscar pokemon" sap:VirtualizedContainerService.HintSize="530,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_NombrePokemon]">
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Escribir en buscar pokemon" sap:VirtualizedContainerService.HintSize="526,155" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_NombrePokemon]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c86a3d46-0ce9-46f3-9e9f-b7ccd1115bc0" InformativeScreenshot="ef1562b28cb14822968645e3fae1ad52" Selector="&lt;webctrl id='searchInput' tag='INPUT' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -212,8 +213,8 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:TypeInto>
-            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Atajos del teclado Enter" sap:VirtualizedContainerService.HintSize="530,179" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" ScopeIdentifier="a83dcbca-35b9-4bdb-886a-654e59a1459d" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V3" />
-            <ui:UiElementExists DisplayName="Elemento existente nombre pokemon incorrecto" Exists="[boolPokemonVacio]" sap:VirtualizedContainerService.HintSize="530,107" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Atajos del teclado Enter" sap:VirtualizedContainerService.HintSize="526,179" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" ScopeIdentifier="a83dcbca-35b9-4bdb-886a-654e59a1459d" Shortcuts="[d(hk)][k(Enter)][u(hk)]" Version="V3" />
+            <ui:UiElementExists DisplayName="Elemento existente nombre pokemon incorrecto" Exists="[boolPokemonVacio]" sap:VirtualizedContainerService.HintSize="526,107" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="67d57fe7-1b76-4bf8-a60c-dd6056e49b6a" InformativeScreenshot="415008741f3f2d64a2d43c1cfc122d85" Selector="&lt;html app='chrome.exe' title='Resultados de la búsqueda de * - WikiDex, la enciclopedia Pokémon' /&gt;&lt;webctrl omit:id='content' tag='DIV' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -225,7 +226,7 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[boolPokemonVacio or in_NombrePokemon is Nothing]" DisplayName="Si el nombre del pokemon introducio esta vacío" sap:VirtualizedContainerService.HintSize="530,654" sap2010:WorkflowViewState.IdRef="If_2">
+            <If Condition="[boolPokemonVacio or in_NombrePokemon is Nothing]" DisplayName="Si el nombre del pokemon introducio esta vacío" sap:VirtualizedContainerService.HintSize="526,654" sap2010:WorkflowViewState.IdRef="If_2">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="492,472" sap2010:WorkflowViewState.IdRef="Sequence_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -248,19 +249,19 @@
                 <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10" />
               </If.Else>
             </If>
-            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Asociar navegador wikidex" sap:VirtualizedContainerService.HintSize="530,954" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="3701f83c482afa07221fb6c6ad4e78aa" Selector="&lt;html app='chrome.exe' title='* - WikiDex, la enciclopedia Pokémon' /&gt;">
+            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Asociar navegador wikidex" sap:VirtualizedContainerService.HintSize="526,832" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="3701f83c482afa07221fb6c6ad4e78aa" Selector="&lt;html app='chrome.exe' title='* - WikiDex, la enciclopedia Pokémon' /&gt;">
               <ui:BrowserScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Búsqueda pokemon" sap:VirtualizedContainerService.HintSize="496,807" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence DisplayName="Búsqueda pokemon" sap:VirtualizedContainerService.HintSize="450,685" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:Highlight HighlightTime="{x:Null}" Color="Gold" DisplayName="Resaltar pokemon" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Highlight_1">
+                    <ui:Highlight HighlightTime="{x:Null}" Color="Gold" DisplayName="Resaltar pokemon" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Highlight_1">
                       <ui:Highlight.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8dee7805-1810-420d-bc95-d40609999cf6" InformativeScreenshot="f95220d3a2a8d31b61aa90a96d21831a" Selector="&lt;webctrl tag='IMG' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -278,7 +279,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:Highlight>
-                    <ui:Click AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DelayMS="1000" DisplayName="Clic imagen pokemon" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DelayMS="1000" DisplayName="Clic imagen pokemon" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
                       <ui:Click.CursorPosition>
                         <ui:CursorPosition Position="Center">
                           <ui:CursorPosition.OffsetX>
@@ -300,7 +301,7 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
-                    <ui:TakeScreenshot DisplayName="Realizar captura de pantalla del pokemon" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[imagenPokemon]" WaitBefore="1000">
+                    <ui:TakeScreenshot DisplayName="Realizar captura de pantalla del pokemon" sap:VirtualizedContainerService.HintSize="388,107" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[imagenPokemon]" WaitBefore="1000">
                       <ui:TakeScreenshot.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d4f52a35-6349-418c-bd50-7671f1115e6c" InformativeScreenshot="5b92d943af978bc4113dc2eec40ae996" Selector="&lt;webctrl id='TB_Image' tag='IMG' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -312,20 +313,12 @@
                         </ui:Target>
                       </ui:TakeScreenshot.Target>
                     </ui:TakeScreenshot>
-                    <Assign DisplayName="Asignar nombre pokemon" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[in_pathImagenes]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">["resources/images/" + in_NombrePokemon + ".png"]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <ui:SaveImage DisplayName="Guardar imagen con nombre del pokemon" FileName="[in_pathImagenes]" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[imagenPokemon]" />
+                    <ui:SaveImage DisplayName="Guardar imagen con nombre del pokemon" FileName="[in_pathImagenes]" sap:VirtualizedContainerService.HintSize="388,133" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[imagenPokemon]" />
                   </Sequence>
                 </ActivityAction>
               </ui:BrowserScope.Body>
             </ui:BrowserScope>
-            <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Cerrar ventana navegador" sap:VirtualizedContainerService.HintSize="530,107" sap2010:WorkflowViewState.IdRef="CloseWindow_1" InformativeScreenshot="ee9c6e0c25c97a1c8796ca65411adbd5" WaitForReady="INTERACTIVE" />
+            <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Cerrar ventana navegador" sap:VirtualizedContainerService.HintSize="526,107" sap2010:WorkflowViewState.IdRef="CloseWindow_1" InformativeScreenshot="ee9c6e0c25c97a1c8796ca65411adbd5" WaitForReady="INTERACTIVE" />
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -334,12 +327,5 @@
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
     <ui:LogMessage DisplayName="Registrar mensaje final" sap:VirtualizedContainerService.HintSize="626,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Finalizamos el módulo de la búsqueda pokemon en la wikidex&quot;]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ApiPokemon.xaml - Invocar archivo de flujo de trabajo" sap:VirtualizedContainerService.HintSize="626,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Modulos\ApiPokemon.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_connectionString">Data Source=LAPTOP-VIP89MER\SQLEXPRESS;Initial Catalog=ProyectoRPA;Integrated Security=True;Encrypt=False</InArgument>
-        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="out_db_connection" />
-        <OutArgument x:TypeArguments="x:String" x:Key="out_pokemon_id" />
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>
