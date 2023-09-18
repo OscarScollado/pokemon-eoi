@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>485.6,1071.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>834.4,1200.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SelectPokemon_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -107,7 +107,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SelectPokemon" sap:VirtualizedContainerService.HintSize="496,1265.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SelectPokemon" sap:VirtualizedContainerService.HintSize="496,1136" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ss:SecureString" Name="secureString" />
       <Variable x:TypeArguments="x:String" Default="Data Source=LAPTOP-VIP89MER\SQLEXPRESS;Initial Catalog=ProyectoRPA;Integrated Security=True;Encrypt=False" Name="connectionString" />
@@ -159,10 +159,5 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Ejecutar comando" ExistingDbConnection="[db_connection]" sap:VirtualizedContainerService.HintSize="433.6,89.6" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="&#xA;IF NOT EXISTS (SELECT * &#xA;                 FROM INFORMATION_SCHEMA.TABLES &#xA;                 WHERE TABLE_NAME = 'Pokemon')&#xA;BEGIN&#xA;&#x9;CREATE TABLE [dbo].[Pokemon](&#xA;&#x9;&#x9;[pokemon_id] [int] NOT NULL PRIMARY KEY,&#xA;&#x9;&#x9;[pokemon_name] [varchar](50) NOT NULL,&#xA;&#x9;&#x9;[abilities] [varchar](200) NOT NULL,&#xA;&#x9;&#x9;[types] [varchar](30) NOT NULL,&#xA;&#x9;&#x9;[base_hp] [int] NOT NULL,&#xA;&#x9;&#x9;[base_att] [int] NOT NULL,&#xA;&#x9;&#x9;[base_def] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spa] [int] NOT NULL,&#xA;&#x9;&#x9;[base_spd] [int] NOT NULL,&#xA;&#x9;&#x9;[base_speed] [int] NOT NULL,&#xA;&#x9;&#x9;[sprite] [image],&#xA;&#x9;&#x9;[moves] [text] NOT NULL,&#xA;&#x9;&#x9;[height] [float] NOT NULL,&#xA;&#x9;&#x9;[weight] [float] NOT NULL,&#xA;&#x9;)&#xA;END&#xA;">
-      <ui:ExecuteNonQuery.Parameters>
-        <scg:Dictionary x:TypeArguments="x:String, Argument" />
-      </ui:ExecuteNonQuery.Parameters>
-    </ui:ExecuteNonQuery>
   </Sequence>
 </Activity>
