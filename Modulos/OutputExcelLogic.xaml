@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="OutputExcelLogic" this:OutputExcelLogic.in_pokemon_name="charizard" this:OutputExcelLogic.in_lista_datos="[new List (Of String) From {&quot;pokemon_id&quot;,&quot;pokemon_name&quot;,&quot;abilities&quot;,&quot;types&quot;,&quot;base_hp&quot;,&quot;base_att&quot;,&quot;base_def&quot;,&quot;base_spa&quot;,&quot;base_spd&quot;,&quot;base_speed&quot;,&quot;sprite&quot;,&quot;moves&quot;,&quot;height&quot;,&quot;weight&quot;}]" this:OutputExcelLogic.in_ruta_excel_output="prueba.xlsx" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="OutputExcelLogic" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_pokemon_dt" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_pokemon_name" Type="InArgument(x:String)" />
@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1139,8450</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1369,8289</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>OutputExcelLogic_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -139,7 +139,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,8385" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="OutputExcelLogic" sap:VirtualizedContainerService.HintSize="592,8224" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="moves" />
       <Variable x:TypeArguments="x:Int32" Name="moves_idx" />
@@ -156,7 +156,6 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GenerateDataTable ColumnSizes="{x:Null}" Positions="{x:Null}" CSVParsing="False" ColumnSeparators=";" DataTable="[in_pokemon_dt]" DisplayName="Generar tabla de datos" sap:VirtualizedContainerService.HintSize="530,201" sap2010:WorkflowViewState.IdRef="GenerateDataTable_1" Input="pokemon_id;pokemon_name;abilities;types;base_hp;base_att;base_def;base_spa;base_spd;base_speed;sprite;moves;height;weight&#xD;&#xA;6;charizard;[{'name': 'blaze', 'hidden': 'False'},{'name': 'solar power', 'hidden': 'True'},];fire,flying,;78;84;78;109;85;100;0x89504E470D0A1A0A0000000D494844520000009D00000012080600000041C0DCDB0000000467414D410000B18F0BFC6105000000097048597300000EC200000EC20115284A8000000047494441546843EDD2310100300C04A1DA7CFF4252173731E080B7EDA0241D39E9C849474E3A72D291938E9C74E4A423271D39E9C849474E3A72D291938E9C74E4A423271DB1DD07F83183AF1650C6230000000049454E44AE426082;mega-punch,fire-punch,thunder-punch,scratch,swords-dance,cut,wing-attack,fly,mega-kick,headbutt,body-slam,take-down,double-edge,leer,growl,roar,ember,flamethrower,hyper-beam,submission,counter,seismic-toss,strength,solar-beam,dragon-rage,fire-spin,earthquake,fissure,dig,toxic,rage,mimic,double-team,smokescreen,defense-curl,reflect,bide,fire-blast,swift,skull-bash,fury-swipes,rest,rock-slide,slash,substitute,snore,curse,protect,scary-face,mud-slap,outrage,sandstorm,endure,false-swipe,swagger,fury-cutter,steel-wing,attract,sleep-talk,return,frustration,dynamic-punch,dragon-breath,iron-tail,metal-claw,hidden-power,twister,sunny-day,crunch,rock-smash,beat-up,heat-wave,will-o-wisp,facade,focus-punch,helping-hand,brick-break,secret-power,blaze-kick,blast-burn,weather-ball,air-cutter,overheat,rock-tomb,aerial-ace,dragon-claw,dragon-dance,roost,natural-gift,tailwind,fling,flare-blitz,air-slash,dragon-pulse,focus-blast,giga-impact,shadow-claw,fire-fang,defog,captivate,ominous-wind,hone-claws,flame-burst,flame-charge,round,echoed-voice,sky-drop,incinerate,acrobatics,inferno,fire-pledge,bulldoze,dragon-tail,work-up,heat-crash,hurricane,confide,mystical-fire,power-up-punch,brutal-swing,breaking-swipe,scale-shot,dual-wingbeat,scorching-sands,tera-blast,;1;90.5" NewLineSeparator="&#xA;" UseColumnHeader="True" />
     <Sequence DisplayName="Quitar la columna &quot;sprite&quot;" sap:VirtualizedContainerService.HintSize="530,545" sap2010:WorkflowViewState.IdRef="Sequence_80">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -176,13 +175,13 @@
         <InArgument x:TypeArguments="x:String">pokemon_name</InArgument>
       </InvokeMethod>
     </Sequence>
-    <Sequence DisplayName="Manejar el nombre del pokemon" sap:VirtualizedContainerService.HintSize="530,937" sap2010:WorkflowViewState.IdRef="Sequence_79">
+    <Sequence DisplayName="Manejar el nombre del pokemon" sap:VirtualizedContainerService.HintSize="530,1017" sap2010:WorkflowViewState.IdRef="Sequence_79">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[in_lista_datos.Contains(&quot;pokemon_name&quot;)]" DisplayName="Si en las cabeceras está el nombre del pokemon" sap:VirtualizedContainerService.HintSize="434,704" sap2010:WorkflowViewState.IdRef="If_13">
+      <If Condition="[in_lista_datos.Contains(&quot;pokemon_name&quot;)]" DisplayName="Si en las cabeceras está el nombre del pokemon" sap:VirtualizedContainerService.HintSize="434,784" sap2010:WorkflowViewState.IdRef="If_13">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
