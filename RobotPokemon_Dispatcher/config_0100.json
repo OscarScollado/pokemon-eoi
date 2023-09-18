@@ -1,0 +1,24 @@
+﻿{
+	"pathSaveExcel" :				".\\resources",
+	"OrchestratorQueueName":	"ObtencionCorreo",
+	"OrchestratorFolder":				"Shared",
+	
+	
+	"TimeoutSmall" : 				"1000",
+	"TimeoutMedium" : 		"3000",
+	"TimeoutLarge" : 				"5000"
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
